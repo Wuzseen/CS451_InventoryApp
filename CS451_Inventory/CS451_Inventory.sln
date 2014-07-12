@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory", "Inventory\Inve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryTest", "InventoryTest\InventoryTest.csproj", "{FE978F9C-B39D-459E-867B-4EEC55967CFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryUI", "InventoryUI\InventoryUI.csproj", "{EA9110EA-C77E-4C22-A98C-E15EA7A9FD3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +17,10 @@ Global
 		{C6D04B16-2DD0-415A-ACBA-A7A550189D52}.Debug|x86.Build.0 = Debug|x86
 		{C6D04B16-2DD0-415A-ACBA-A7A550189D52}.Release|x86.ActiveCfg = Release|x86
 		{C6D04B16-2DD0-415A-ACBA-A7A550189D52}.Release|x86.Build.0 = Release|x86
+		{EA9110EA-C77E-4C22-A98C-E15EA7A9FD3C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EA9110EA-C77E-4C22-A98C-E15EA7A9FD3C}.Debug|x86.Build.0 = Debug|Any CPU
+		{EA9110EA-C77E-4C22-A98C-E15EA7A9FD3C}.Release|x86.ActiveCfg = Release|Any CPU
+		{EA9110EA-C77E-4C22-A98C-E15EA7A9FD3C}.Release|x86.Build.0 = Release|Any CPU
 		{FE978F9C-B39D-459E-867B-4EEC55967CFA}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{FE978F9C-B39D-459E-867B-4EEC55967CFA}.Debug|x86.Build.0 = Debug|Any CPU
 		{FE978F9C-B39D-459E-867B-4EEC55967CFA}.Release|x86.ActiveCfg = Release|Any CPU
