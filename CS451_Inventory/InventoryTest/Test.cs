@@ -2,14 +2,12 @@
 using System;
 using Inventory;
 
-namespace InventoryTest
-{
+namespace InventoryTest {
 	[TestFixture ()]
 	public class Test
 	{
 		[Test ()]
-		public void ItemNameIsValid ()
-		{
+		public void ItemNameIsValid () {
 			string testName = "WalrusSnacks";
 			InventoryItem i = new InventoryItem ();
 			Assert.AreEqual("InvItem", i.Name);
