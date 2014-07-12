@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Inventory/InventoryItem.cs">
+    <Files>
+      <File FileName="Inventory/InventoryItem.cs" Line="16" Column="3" />
+      <File FileName="Inventory/main.cs" Line="10" Column="4" />
+      <File FileName="InventoryTest/Test.cs" Line="13" Column="43" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

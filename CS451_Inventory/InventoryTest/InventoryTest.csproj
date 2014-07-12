@@ -34,4 +34,10 @@
     <Compile Include="Test.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Inventory\Inventory.csproj">
+      <Project>{C6D04B16-2DD0-415A-ACBA-A7A550189D52}</Project>
+      <Name>Inventory</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
