@@ -35,6 +35,5 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="..\ProjectSharer\InventorySystem.projitems" Label="Shared" Condition="Exists('..\ProjectSharer\InventorySystem.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
