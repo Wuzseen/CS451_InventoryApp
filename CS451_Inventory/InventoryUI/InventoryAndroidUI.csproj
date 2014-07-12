@@ -58,6 +58,7 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
+  <Import Project="..\ProjectSharer\InventorySystem.projitems" Label="Shared" Condition="Exists('..\ProjectSharer\InventorySystem.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\InventoryModel\InventoryController.csproj">

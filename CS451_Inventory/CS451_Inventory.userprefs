@@ -1,25 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="InventoryTest/Test.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="InventoryConsole/Program.cs">
     <Files>
-      <File FileName="InventoryTest/Test.cs" Line="11" Column="11" />
+      <File FileName="InventoryTest/Test.cs" Line="4" Column="1" />
+      <File FileName="ProjectSharer/InventoryItem.cs" Line="3" Column="26" />
+      <File FileName="InventoryConsole/Program.cs" Line="12" Column="30" />
     </Files>
     <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="InventoryAndroidUI" expanded="True">
-            <Node name="References" expanded="True" />
-          </Node>
-          <Node name="InventoryController" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="Properties" expanded="True" />
-          </Node>
-          <Node name="InventorySystem" expanded="True" />
-          <Node name="InventoryTest" expanded="True" selected="True">
-            <Node name="References" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
         <State expanded="True" selected="True" />
       </Pad>
