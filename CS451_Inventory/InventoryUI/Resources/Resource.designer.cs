@@ -1,4 +1,4 @@
-﻿namespace InventoryUI
+﻿namespace InventoryConsole
 {
 
 

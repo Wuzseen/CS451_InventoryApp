@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
-using Inventory;
+using InventorySystem;
 
-namespace InventoryTest {
+namespace InventoryConsole {
 	[TestFixture ()]
 	public class Test
 	{

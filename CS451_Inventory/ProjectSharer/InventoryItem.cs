@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Inventory {
+namespace InventorySystem {
 	public class InventoryItem {
 		private string name;
 		public string Name {

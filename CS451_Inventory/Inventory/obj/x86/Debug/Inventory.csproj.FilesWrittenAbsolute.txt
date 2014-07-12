@@ -1,5 +1,0 @@
-/Users/Tim/Git/CS451_InventoryApp/CS451_Inventory/Inventory/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
-/Users/Tim/Git/CS451_InventoryApp/CS451_Inventory/Inventory/bin/Debug/Inventory.exe.mdb
-/Users/Tim/Git/CS451_InventoryApp/CS451_Inventory/Inventory/bin/Debug/Inventory.exe
-/Users/Tim/Git/CS451_InventoryApp/CS451_Inventory/Inventory/obj/x86/Debug/Inventory.exe
-/Users/Tim/Git/CS451_InventoryApp/CS451_Inventory/Inventory/obj/x86/Debug/Inventory.exe.mdb

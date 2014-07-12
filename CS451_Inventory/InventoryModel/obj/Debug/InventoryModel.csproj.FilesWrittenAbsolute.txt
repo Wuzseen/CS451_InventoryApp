@@ -1,0 +1,5 @@
+/Users/Tim/Git/CS451_InventoryApp/CS451_Inventory/InventoryModel/obj/Debug/.NETPortable,Version=v4.5,Profile=Profile78.AssemblyAttribute.cs
+/Users/Tim/Git/CS451_InventoryApp/CS451_Inventory/InventoryModel/bin/Debug/InventoryModel.dll.mdb
+/Users/Tim/Git/CS451_InventoryApp/CS451_Inventory/InventoryModel/bin/Debug/InventoryModel.dll
+/Users/Tim/Git/CS451_InventoryApp/CS451_Inventory/InventoryModel/obj/Debug/InventoryModel.dll
+/Users/Tim/Git/CS451_InventoryApp/CS451_Inventory/InventoryModel/obj/Debug/InventoryModel.dll.mdb

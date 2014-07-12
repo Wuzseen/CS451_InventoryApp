@@ -7,7 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-namespace InventoryUI
+namespace InventoryConsole
 {
 	[Activity(Label = "InventoryUI", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
