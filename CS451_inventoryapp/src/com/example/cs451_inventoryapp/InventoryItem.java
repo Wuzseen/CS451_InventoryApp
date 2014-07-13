@@ -18,7 +18,7 @@ public class InventoryItem {
 	
 	private void Setup(String itemName) {
 		this.id = idCount;
-		idCount++;
+		InventoryItem.idCount++;
 		this.name = itemName;
 	}
 	
@@ -28,5 +28,9 @@ public class InventoryItem {
 	
 	public InventoryItem() {
 		this("DefaultInventoryItem");
+	}
+	
+	public boolean equals(InventoryItem i) {
+		return this.getId() == i.getId();
 	}
 }

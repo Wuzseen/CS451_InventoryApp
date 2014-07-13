@@ -12,4 +12,22 @@ public class InvTest extends TestCase {
 		i = new InventoryItem("WalrusSnacks");
 		Assert.assertEquals("WalrusSnacks", i.getName());
 	}
+	
+	public void testItemId() {
+		// Inventory item ids should increment by 1 after each new inventory item
+		InventoryItem item1  = new InventoryItem();
+		InventoryItem item2 = new InventoryItem();
+		
+		Assert.assertEquals(item2.getId(), item1.getId() + 1);
+	}
+	
+	public void testItemEquality() {
+		// Evaluated based on id.
+		InventoryItem item1  = new InventoryItem();
+		InventoryItem item3 = item1;
+		InventoryItem item2 = new InventoryItem();
+		
+		Assert.assertFalse(item1.equals(item2));
+		Assert.assertTrue(item1.equals(item3));
+	}
 }
