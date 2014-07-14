@@ -72,6 +72,33 @@ public class Location {
 		}
 	}
 	
+	public InventoryItem getItem(int index) {
+		return this.itemList.get(index);
+	}
+	
+	public InventoryItem getItemWithId(int id) {
+		for(int i = 0; i < this.Count(); i++) {
+			InventoryItem item = this.itemList.get(i);
+			if(item.getId() == id) {
+				return item;
+			}
+		}
+		return null;
+	}
+	
+	public boolean Contains(int id) {
+		for(int i = 0; i < this.Count(); i++) {
+			if(this.itemList.get(i).getId() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean Contains(InventoryItem item) {
+		return this.itemList.contains(item);
+	}
+	
 	// Num of items in location
 	public int Count() {
 		return this.itemList.size();	
