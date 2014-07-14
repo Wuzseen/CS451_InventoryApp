@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 
 import com.example.cs451_inventoryapp.*;
 
-public class InvTest extends TestCase {
+public class InventoryItemTest extends TestCase {
 	public void testInvItemName() {
 		InventoryItem i = new InventoryItem();
 		Assert.assertEquals("DefaultInventoryItem", i.getName());
