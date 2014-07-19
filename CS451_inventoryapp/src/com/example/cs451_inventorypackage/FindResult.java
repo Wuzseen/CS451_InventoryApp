@@ -3,7 +3,7 @@ package com.example.cs451_inventorypackage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class SearchResult<T> implements Iterable<T> {
+public class FindResult<T> implements Iterable<T> {
 	private ArrayList<T> items;
 	public ArrayList<T> getItems() {
 		return items;
@@ -20,7 +20,7 @@ public class SearchResult<T> implements Iterable<T> {
 		return items.size() > 0;
 	}
 	
-	public SearchResult () {
+	public FindResult () {
 		this.items = new ArrayList<T>();
 	}
 	

@@ -14,9 +14,9 @@ public class InventoryManager {
 		this.locationListing.add(l);
 	}
 	
-	public SearchResult<InventoryItem> findByUniqueId(int id) {
+	public FindResult<InventoryItem> findByUniqueId(int id) {
 		// Searches through locations
-		SearchResult<InventoryItem> ret = new SearchResult<InventoryItem>();
+		FindResult<InventoryItem> ret = new FindResult<InventoryItem>();
 		for(Location l : locationListing) {
 			ret.addItem(l.findItemById(id));
 			if(ret.Successful()) {
@@ -26,9 +26,9 @@ public class InventoryManager {
 		return ret;
 	}
 	
-	public SearchResult<InventoryItem> findByName(String name) {
+	public FindResult<InventoryItem> findByName(String name) {
 		// Searches through locations
-		SearchResult<InventoryItem> ret = new SearchResult<InventoryItem>();
+		FindResult<InventoryItem> ret = new FindResult<InventoryItem>();
 		for(Location l : locationListing) {
 			ret.addItems(l.findItemsWithName(name));
 		}
