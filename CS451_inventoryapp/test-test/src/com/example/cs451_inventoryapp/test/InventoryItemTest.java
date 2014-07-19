@@ -4,6 +4,7 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import com.example.cs451_inventoryapp.*;
+import com.example.cs451_inventorypackage.InventoryItem;
 
 public class InventoryItemTest extends TestCase {
 	public void testInvItemName() {

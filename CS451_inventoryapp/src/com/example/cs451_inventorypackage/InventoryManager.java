@@ -1,16 +1,13 @@
-package com.example.cs451_inventoryapp;
+package com.example.cs451_inventorypackage;
 
 import java.util.ArrayList;
 
-// Handles heirarchy of locations
+// Handles hierarchy of locations
 public class InventoryManager {
 	private ArrayList<Location> locationListing;
 	
 	public InventoryManager() {
 		this.locationListing = new ArrayList<Location>();
-	}
-	
-	public void AddRootItem(InventoryItem i) {
 	}
 	
 	public void AddRootLocation(Location l) {

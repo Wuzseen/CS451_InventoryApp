@@ -1,13 +1,21 @@
-package com.example.cs451_inventoryapp;
+package com.example.cs451_inventorypackage;
 
 import java.util.ArrayList;
 
-public class Location {
+public class Location implements ISearchable {
 	private static int idCount = 1;
 
 	private int id;
 	public int getId() {
 		return id;
+	}
+	
+	private Barcode barcode;
+	public Barcode getBarcode() {
+		return this.barcode;
+	}
+	public void setBarcode(Barcode bc) {
+		this.barcode = bc;
 	}
 	
 	// Is not setable outside of Add and Remove items
@@ -118,5 +126,16 @@ public class Location {
 	
 	public boolean SpaceAvailable() {
 		return (this.maxSize == -1 || this.Count() < this.maxSize);
+	}
+	
+	@Override
+	public boolean nameSearch(String searchString) {
+		// TODO Auto-generated method stub
+		return this.name.equals(searchString);
+	}
+	@Override
+	public boolean idSearch(int id) {
+		// TODO Auto-generated method stub
+		return this.id == id;
 	}
 }
