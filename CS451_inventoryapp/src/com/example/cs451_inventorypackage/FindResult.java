@@ -15,9 +15,18 @@ public class FindResult<T> implements Iterable<T> {
 		this.items.addAll(items);
 	}
 	
-	public boolean Successful() {
+	public boolean successful() {
 		// Has more than 0 results
 		return items.size() > 0;
+	}
+	
+	public boolean singleResult() {
+		// If there's just one result, useful to assert that results are unique.
+		return items.size() == 1;
+	}
+	
+	public int size() {
+		return items.size();
 	}
 	
 	public FindResult () {

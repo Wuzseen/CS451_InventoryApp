@@ -19,7 +19,7 @@ public class InventoryManager {
 		FindResult<InventoryItem> ret = new FindResult<InventoryItem>();
 		for(Location l : locationListing) {
 			ret.addItem(l.findItemById(id));
-			if(ret.Successful()) {
+			if(ret.successful()) {
 				return ret;
 			}
 		}
@@ -31,6 +31,23 @@ public class InventoryManager {
 		FindResult<InventoryItem> ret = new FindResult<InventoryItem>();
 		for(Location l : locationListing) {
 			ret.addItems(l.findItemsWithName(name));
+		}
+		return ret;
+	}
+	
+	public FindResult<Location> findMatchingLocationByName(String name) {
+		FindResult<Location> ret = new FindResult<Location>();
+		for(Location l : locationListing) {
+			ret.addItems(l.find(name));
+		}
+		return ret;
+	}
+	
+	// Does a location name contain the search string
+	public FindResult<Location> findContainingLocationByName(String name) {
+		FindResult<Location> ret = new FindResult<Location>();
+		for(Location l : locationListing) {
+			ret.addItems(l.findContaining(name));
 		}
 		return ret;
 	}

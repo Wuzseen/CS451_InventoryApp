@@ -19,7 +19,7 @@ public class InventoryItemTest extends TestCase {
 		InventoryItem item1  = new InventoryItem();
 		InventoryItem item2 = new InventoryItem();
 		
-		Assert.assertEquals(item2.getId(), item1.getId() + 1);
+		Assert.assertEquals((Integer)item2.getId(), (Integer)(item1.getId() + 1));
 	}
 	
 	public void testItemEquality() {

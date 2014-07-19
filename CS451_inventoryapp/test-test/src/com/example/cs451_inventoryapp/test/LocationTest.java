@@ -19,7 +19,7 @@ public class LocationTest extends TestCase{
 		Location l1 = new Location();
 		Location l2 = new Location();
 		
-		Assert.assertEquals(l2.getId(), l1.getId() + 1);
+		Assert.assertEquals((Integer)l2.getId(), (Integer)(l1.getId() + 1));
 	}
 	
 	public void testAddingItem() {

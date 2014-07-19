@@ -3,10 +3,10 @@ package com.example.cs451_inventorypackage;
 import java.util.ArrayList;
 
 public class Location implements ISearchable<Location> {
-	private static int idCount = 1;
+	private static Integer idCount = 1;
 
-	private int id;
-	public int getId() {
+	private Integer id;
+	public Integer getId() {
 		return id;
 	}
 	
@@ -147,14 +147,16 @@ public class Location implements ISearchable<Location> {
 		return null;
 	}
 	@Override
-	public Location find(String name) {
-		if(this.name.equals(name)) {
-			return this;
-		}
-		for(Location l : this.subLocations) {
-			return l.find(name);
-		}
-		return null;
+	public ArrayList<Location> find(String name) {
+		ArrayList<Location> ret = new ArrayList<Location>();
+		this.assembleLocationListMatching(ret,name);
+		return ret;
+	}
+	@Override
+	public ArrayList<Location> findContaining(String name) {
+		ArrayList<Location> ret = new ArrayList<Location>();
+		assembleLocationListContaining(ret,name);
+		return ret;
 	}
 	
 	public InventoryItem findItemById(int id) {
@@ -171,17 +173,38 @@ public class Location implements ISearchable<Location> {
 	
 	public ArrayList<InventoryItem> findItemsWithName(String name) {
 		ArrayList<InventoryItem> ret = new ArrayList<InventoryItem>();
-		assembleList(ret, name);
+		assembleItemList(ret, name);
 		return ret;
 	}
-	private void assembleList(ArrayList<InventoryItem> list, String search) {
+	public ArrayList<InventoryItem> findItemsWithBarcode(Barcode code) {
+		ArrayList<InventoryItem> ret = new ArrayList<InventoryItem>();
+		assembleItemList(ret, code);
+		return ret;
+	}
+	private void assembleItemList(ArrayList<InventoryItem> list, Object search) {
 		for(InventoryItem i : this.itemList) {
-			if(i.getName().equals(name)) {
+			if(i.equals(search)) {
 				list.add(i);
 			}
 		}
 		for(Location l : this.subLocations) {
-			l.assembleList(list, name);
+			l.assembleItemList(list, search);
+		}
+	}
+	private void assembleLocationListContaining(ArrayList<Location> list, String search) {
+		if(this.name.contains(search)) {
+			list.add(this);
+		}
+		for(Location l : this.subLocations) {
+			l.assembleLocationListContaining(list, search);
+		}
+	}
+	private void assembleLocationListMatching(ArrayList<Location> list, String search) {
+		if(this.name.equals(search)) {
+			list.add(this);
+		}
+		for(Location l : this.subLocations) {
+			l.assembleLocationListContaining(list, search);
 		}
 	}
 }
