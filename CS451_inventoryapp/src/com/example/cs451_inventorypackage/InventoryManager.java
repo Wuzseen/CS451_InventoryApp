@@ -13,4 +13,25 @@ public class InventoryManager {
 	public void AddRootLocation(Location l) {
 		this.locationListing.add(l);
 	}
+	
+	public SearchResult<InventoryItem> findByUniqueId(int id) {
+		// Searches through locations
+		SearchResult<InventoryItem> ret = new SearchResult<InventoryItem>();
+		for(Location l : locationListing) {
+			ret.addItem(l.findItemById(id));
+			if(ret.Successful()) {
+				return ret;
+			}
+		}
+		return ret;
+	}
+	
+	public SearchResult<InventoryItem> findByName(String name) {
+		// Searches through locations
+		SearchResult<InventoryItem> ret = new SearchResult<InventoryItem>();
+		for(Location l : locationListing) {
+			ret.addItems(l.findItemsWithName(name));
+		}
+		return ret;
+	}
 }

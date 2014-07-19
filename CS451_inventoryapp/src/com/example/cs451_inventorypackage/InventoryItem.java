@@ -1,6 +1,6 @@
 package com.example.cs451_inventorypackage;
 
-public class InventoryItem implements ISearchable {
+public class InventoryItem {
 	private static int idCount = 1;
 	
 	private int id;
@@ -40,20 +40,5 @@ public class InventoryItem implements ISearchable {
 	
 	public boolean equals(InventoryItem i) {
 		return this.getId() == i.getId();
-	}
-	@Override
-	public boolean nameSearch(String searchString) {
-		// TODO Auto-generated method stub
-		return this.name.equals(searchString);
-	}
-	@Override
-	public boolean idSearch(int id) {
-		// TODO Auto-generated method stub
-		return this.id == id;
-	}
-
-	public boolean barcodeSearch(Barcode code) {
-		// TODO Auto-generated method stub
-		return this.barcode.equals(code);
 	}
 }
