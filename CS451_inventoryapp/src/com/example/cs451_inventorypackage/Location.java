@@ -75,15 +75,15 @@ public class Location implements ISearchable<Location> {
 		this.maxSize = size;
 	}
 	
-	public void AddItem(InventoryItem item) {
+	public void addItem(InventoryItem item) {
 		this.itemList.add(item);
 	}
 	
-	public void RemoveItem(InventoryItem item) {
+	public void removeItem(InventoryItem item) {
 		this.itemList.remove(item);
 	}
 
-	public void RemoveItem(int itemId) {
+	public void removeItem(int itemId) {
 		for(int i = 0; i < this.itemList.size(); i++) {
 			if(this.itemList.get(i).getId() == itemId) {
 				this.itemList.remove(this.itemList.get(i));
@@ -97,7 +97,7 @@ public class Location implements ISearchable<Location> {
 	}
 	
 	public InventoryItem getItemWithId(int id) {
-		for(int i = 0; i < this.Count(); i++) {
+		for(int i = 0; i < this.count(); i++) {
 			InventoryItem item = this.itemList.get(i);
 			if(item.getId() == id) {
 				return item;
@@ -106,8 +106,8 @@ public class Location implements ISearchable<Location> {
 		return null;
 	}
 	
-	public boolean Contains(int id) {
-		for(int i = 0; i < this.Count(); i++) {
+	public boolean contains(int id) {
+		for(int i = 0; i < this.count(); i++) {
 			if(this.itemList.get(i).getId() == id) {
 				return true;
 			}
@@ -115,17 +115,17 @@ public class Location implements ISearchable<Location> {
 		return false;
 	}
 	
-	public boolean Contains(InventoryItem item) {
+	public boolean contains(InventoryItem item) {
 		return this.itemList.contains(item);
 	}
 	
 	// Num of items in location
-	public int Count() {
+	public int count() {
 		return this.itemList.size();	
 	}
 	
-	public boolean SpaceAvailable() {
-		return (this.maxSize == -1 || this.Count() < this.maxSize);
+	public boolean spaceAvailable() {
+		return (this.maxSize == -1 || this.count() < this.maxSize);
 	}
 	
 	@Override

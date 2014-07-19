@@ -10,7 +10,7 @@ public class InventoryManager {
 		this.locationListing = new ArrayList<Location>();
 	}
 	
-	public void AddRootLocation(Location l) {
+	public void addRootLocation(Location l) {
 		this.locationListing.add(l);
 	}
 	

@@ -25,27 +25,27 @@ public class LocationTest extends TestCase{
 	public void testAddingItem() {
 		Location l  = new Location();
 		InventoryItem i = new InventoryItem();
-		Assert.assertEquals(0, l.Count());
-		l.AddItem(i);
-		Assert.assertEquals(1, l.Count());
+		Assert.assertEquals(0, l.count());
+		l.addItem(i);
+		Assert.assertEquals(1, l.count());
 	}
 	
 	public void testContains() {
 		Location l = new Location();
 		InventoryItem i = new InventoryItem();
-		l.AddItem(i);
-		Assert.assertTrue(l.Contains(i.getId()));
-		Assert.assertTrue(l.Contains(i));
+		l.addItem(i);
+		Assert.assertTrue(l.contains(i.getId()));
+		Assert.assertTrue(l.contains(i));
 		InventoryItem falseItem = new InventoryItem();
-		Assert.assertFalse(l.Contains(falseItem));
-		Assert.assertFalse(l.Contains(falseItem.getId()));
+		Assert.assertFalse(l.contains(falseItem));
+		Assert.assertFalse(l.contains(falseItem.getId()));
 	}
 	
 	public void testGetItem() {
 		Location l = new Location();
 		InventoryItem i1 = new InventoryItem();
 		InventoryItem i2 = new InventoryItem();
-		l.AddItem(i1);
+		l.addItem(i1);
 		Assert.assertNull(l.getItemWithId(i2.getId()));
 		Assert.assertEquals(i1, l.getItemWithId(i1.getId()));
 		Assert.assertEquals(i1, l.getItem(0));
@@ -54,20 +54,20 @@ public class LocationTest extends TestCase{
 	public void testItemRemovalFromId() {
 		Location l  = new Location();
 		InventoryItem i = new InventoryItem();
-		Assert.assertEquals(0, l.Count());
-		l.AddItem(i);
-		Assert.assertEquals(1, l.Count());
-		l.RemoveItem(i.getId());
+		Assert.assertEquals(0, l.count());
+		l.addItem(i);
+		Assert.assertEquals(1, l.count());
+		l.removeItem(i.getId());
 		Assert.assertFalse(l.getItemList().contains(i));
 	}
 	
 	public void testItemRemovalFromObject() {
 		Location l  = new Location();
 		InventoryItem i = new InventoryItem();
-		Assert.assertEquals(0, l.Count());
-		l.AddItem(i);
-		Assert.assertEquals(1, l.Count());
-		l.RemoveItem(i);
+		Assert.assertEquals(0, l.count());
+		l.addItem(i);
+		Assert.assertEquals(1, l.count());
+		l.removeItem(i);
 		Assert.assertFalse(l.getItemList().contains(i));
 	}
 	
@@ -80,10 +80,10 @@ public class LocationTest extends TestCase{
 	
 	public void testSpaceAvailable() {
 		Location l = new Location();
-		Assert.assertTrue(l.SpaceAvailable());
+		Assert.assertTrue(l.spaceAvailable());
 		l.setMaxSize(1);
-		Assert.assertTrue(l.SpaceAvailable());
-		l.AddItem(new InventoryItem());
-		Assert.assertFalse(l.SpaceAvailable());
+		Assert.assertTrue(l.spaceAvailable());
+		l.addItem(new InventoryItem());
+		Assert.assertFalse(l.spaceAvailable());
 	}
 }
