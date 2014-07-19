@@ -23,6 +23,21 @@ public class Location {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	private ArrayList<Location> subLocations;
+	public ArrayList<Location> getSubLocations() {
+		return this.subLocations;
+	}
+	public void addSubLocation(Location l) {
+		this.subLocations.add(l);
+	}
+	public boolean removeSubLocation(int index) {
+		return this.subLocations.remove(index) != null;
+	}
+	public boolean removeSubLocation(Location l) {
+		// false if it doesn't find it
+		return this.subLocations.remove(l);
+	}
 
 	// Max number of items that can fit, -1 is a sentinel value saying it's infinite
 	private int maxSize;
@@ -33,7 +48,8 @@ public class Location {
 		this.maxSize = maxSize;
 	}
 	
-	private void Setup() {
+	public Location() {
+		this.subLocations = new ArrayList<Location>();
 		this.itemList = new ArrayList<InventoryItem>();
 		this.maxSize = -1;
 		this.name = "DefaultLocationName";
@@ -41,12 +57,8 @@ public class Location {
 		idCount++;
 	}
 	
-	public Location() {
-		Setup();
-	}
-	
 	public Location(String locationName) {
-		Setup();
+		this();
 		this.name = locationName;
 	}
 	
