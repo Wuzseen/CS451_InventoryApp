@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <!-- Barcode entry box -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/barcode_label"
+        android:padding="12dp"/>
+    <EditText
+        android:id="@+id/barcodeEntry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/barcode_hint"/>
+    <!-- SKU entry box -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sku_label"
+        android:padding="12dp"/>
+    <EditText
+        android:id="@+id/skuEntry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/sku_hint"/>
+    <!-- Description/Name entry box -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/desc_name_label"
+        android:padding="12dp"/>
+    <EditText
+        android:id="@+id/dnameEntry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/desc_name_hint"/>
+        
+
+</LinearLayout>

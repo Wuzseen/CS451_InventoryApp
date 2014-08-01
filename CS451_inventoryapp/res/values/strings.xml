@@ -2,6 +2,29 @@
 <resources>
 
     <string name="app_name">CS451_inventoryapp</string>
-    <string name="hello_world">Hello world!</string>
-
+    <string name="nodata">None</string>
+    <!-- Buttons -->
+    <string name="enterbarcode">Enter Barcode/SKU</string>
+    <string name="button_search">Search</string>
+    <string name="button_new">New</string>
+    <string name="button_edit">Edit</string>
+    <string name="button_inventory">Inventory</string>
+    <string name="button_locate">Locate</string>
+    <string name="addamount">Add Amount</string>
+    <string name="subtractamount">Subtract Amount</string>
+    <string name="okay">OK</string>
+    <string name="cancel">Cancel</string>
+    <!-- Labels -->
+    <string name="barcode_label">Barcode</string>
+    <string name="sku_label">SKU</string>
+    <string name="desc_name_label">Description/Name</string>
+    <string name="instock_label">In Stock</string>
+    <string name="inventoryaction">Inventory action?</string>
+    <string name="amount_label">Amount:</string>
+    <!-- Hints -->
+    <string name="barcode_hint">Enter a barcode</string>
+    <string name="sku_hint">Enter a SKU</string>
+    <string name="desc_name_hint">Enter a description or name</string>
+    
+	
 </resources>
