@@ -1,6 +1,13 @@
 package com.example.cs451_inventorypackage;
 
-public class InventoryItem {
+import java.io.Serializable;
+
+public class InventoryItem implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static Integer idCount = 1;
 	
 	private Integer id;
