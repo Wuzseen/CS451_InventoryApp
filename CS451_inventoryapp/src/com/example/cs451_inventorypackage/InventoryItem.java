@@ -1,8 +1,11 @@
 package com.example.cs451_inventorypackage;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import android.content.Context;
 
-public class InventoryItem implements Serializable {
+public class InventoryItem implements Serializable, ISerialize {
 	/**
 	 * 
 	 */
@@ -57,6 +60,7 @@ public class InventoryItem implements Serializable {
 	public boolean equals(Barcode code) {
 		return this.barcode.equals(code);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -74,4 +78,17 @@ public class InventoryItem implements Serializable {
 		return false;
 	}
 	
+	public boolean SerializeItem(String filename, Context c) {
+		FileOutputStream fos = null;
+		ObjectOutputStream out = null;
+		try {
+			fos = c.openFileOutput(filename,Context.MODE_PRIVATE);//new FileOutputStream(filename);
+			out = new ObjectOutputStream(fos);
+			out.writeObject(this);
+			return true;
+		} catch (Exception ex) {
+			System.out.println(String.format("Could not serialize: %s", ex.toString()));
+			return false;
+		}
+	}
 }

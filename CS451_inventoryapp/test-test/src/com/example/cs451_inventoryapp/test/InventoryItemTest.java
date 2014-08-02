@@ -1,18 +1,12 @@
 package com.example.cs451_inventoryapp.test;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 import android.content.Context;
 import android.test.AndroidTestCase;
-import android.test.InstrumentationTestCase;
 
-import com.example.cs451_inventoryapp.*;
 import com.example.cs451_inventorypackage.InventoryItem;
 
 public class InventoryItemTest extends AndroidTestCase {
@@ -44,13 +38,9 @@ public class InventoryItemTest extends AndroidTestCase {
 	public void testItemSerialize() {
 		InventoryItem item1 = new InventoryItem("Test");
 		String filename = "testserial.invitem";
-		FileOutputStream fos = null;
-		ObjectOutputStream out = null;
 		Context c = this.getContext();
 		try {
-			fos = c.openFileOutput(filename,Context.MODE_PRIVATE);//new FileOutputStream(filename);
-			out = new ObjectOutputStream(fos);
-			out.writeObject(item1);
+			item1.SerializeItem(filename, c);
 		} catch (Exception ex) {
 			Assert.fail(String.format("Could not serialize: %s", ex.toString()));
 		}
@@ -69,13 +59,9 @@ public class InventoryItemTest extends AndroidTestCase {
 	public void testItemDeserialize() {
 		InventoryItem item1 = new InventoryItem("Test");
 		String filename = "testserial.invitem";
-		FileOutputStream fos = null;
-		ObjectOutputStream out = null;
 		Context c = this.getContext();
 		try {
-			fos = c.openFileOutput(filename,Context.MODE_PRIVATE);//new FileOutputStream(filename);
-			out = new ObjectOutputStream(fos);
-			out.writeObject(item1);
+			item1.SerializeItem(filename, c);
 		} catch (Exception ex) {
 			Assert.fail(String.format("Could not serialize: %s", ex.toString()));
 		}
