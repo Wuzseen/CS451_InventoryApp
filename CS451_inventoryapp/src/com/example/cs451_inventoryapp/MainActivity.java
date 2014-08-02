@@ -1,5 +1,7 @@
 package com.example.cs451_inventoryapp;
 
+import com.example.cs451_inventorypackage.*;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,13 +16,17 @@ public class MainActivity extends ActionBarActivity {
 		Fragment fragment;
 		String barcode;
 		EditText barcode_entry;
+		InventoryManager iManager;
 		static final int SCAN_BARCODE_REQUEST = 1; // request code to send to BarcodeScannerActivity
 		static final int RESULT_OK = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+        iManager = new InventoryManager();
+        Location rootLocation = new Location("Root");
+        iManager.addRootLocation(rootLocation);
+        rootLocation.addItem(new InventoryItem("WalrusSnack"));
         barcode_entry = (EditText) findViewById(R.id.barcodeSearch);
         
         Button scanBut = (Button) findViewById(R.id.scanBut);
@@ -28,6 +34,7 @@ public class MainActivity extends ActionBarActivity {
         Button editBut = (Button) findViewById(R.id.editBut);
         Button inventoryBut = (Button) findViewById(R.id.inventoryBut);
         Button locateBut = (Button) findViewById(R.id.locateBut);
+        Button searchBut = (Button) findViewById(R.id.searchBut);
         
         // Start up barcode scanning
         scanBut.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +88,22 @@ public class MainActivity extends ActionBarActivity {
 				// transaction.addToBackStack(null);
 				// transaction.commit();
 			}
-		});     
+		});   
+        
+        searchBut.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String searchString = barcode_entry.getText().toString();
+				if(searchString.equals("")) {
+					return;
+				}
+				FindResult<InventoryItem> itemResults = iManager.findByName(searchString);
+				FindResult<Location> locationResults = iManager.findContainingLocationByName(searchString);
+				// TODO Auto-generated method stub
+				Toast.makeText(MainActivity.this, String.format("Search Result: %s", itemResults.successful()), Toast.LENGTH_SHORT).show();
+			}
+		});
     }
     
     @Override
