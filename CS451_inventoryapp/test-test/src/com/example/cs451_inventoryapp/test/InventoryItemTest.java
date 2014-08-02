@@ -1,12 +1,12 @@
 package com.example.cs451_inventoryapp.test;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
+import android.content.Context;
+import android.test.AndroidTestCase;
 
-import com.example.cs451_inventoryapp.*;
 import com.example.cs451_inventorypackage.InventoryItem;
 
-public class InventoryItemTest extends TestCase {
+public class InventoryItemTest extends AndroidTestCase {
 	public void testInvItemName() {
 		InventoryItem i = new InventoryItem();
 		Assert.assertEquals("DefaultInventoryItem", i.getName());
@@ -30,5 +30,44 @@ public class InventoryItemTest extends TestCase {
 		
 		Assert.assertFalse(item1.equals(item2));
 		Assert.assertTrue(item1.equals(item3));
+	}
+	
+	public void testItemSerialize() {
+		InventoryItem item1 = new InventoryItem("Test");
+		String filename = "testserial.invitem";
+		Context c = this.getContext();
+		try {
+			item1.SerializeItem(filename, c);
+		} catch (Exception ex) {
+			Assert.fail(String.format("Could not serialize: %s", ex.toString()));
+		}
+		
+		// Make sure file was saved
+		boolean exists = false;
+		for(String s : c.fileList()) {
+			if(s.equals(filename)) {
+				exists = true;
+				break;
+			}
+		}
+		Assert.assertTrue(exists);
+	}
+	
+	public void testItemDeserialize() {
+		InventoryItem item1 = new InventoryItem("Test");
+		String filename = "testserial.invitem";
+		Context c = this.getContext();
+		try {
+			item1.SerializeItem(filename, c);
+		} catch (Exception ex) {
+			Assert.fail(String.format("Could not serialize: %s", ex.toString()));
+		}
+		
+		try {
+			InventoryItem t = InventoryItem.Deserialize(filename, c);
+			Assert.assertTrue(t.equals(item1));
+		} catch(Exception ex) {
+			Assert.fail(String.format("Could not deserialize object: %s", ex.toString()));
+		}
 	}
 }
