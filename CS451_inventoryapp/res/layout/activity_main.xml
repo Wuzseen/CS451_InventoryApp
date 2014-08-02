@@ -43,7 +43,7 @@
         	android:layout_weight="1"
         	android:text="@string/button_new"
         	android:textSize="12sp"
-        	android:enabled="false"/>
+        	android:enabled="true"/>
     
     	<Button 
         	android:id="@+id/editBut"
@@ -52,7 +52,7 @@
         	android:layout_weight="1"
         	android:text="@string/button_edit"
         	android:textSize="12sp"
-        	android:enabled="false"/>
+        	android:enabled="true"/>
     
     	<Button 
         	android:id="@+id/inventoryBut"
@@ -61,7 +61,7 @@
         	android:layout_weight="1"
         	android:text="@string/button_inventory"
         	android:textSize="12sp"
-        	android:enabled="false"/>
+        	android:enabled="true"/>
     
     	<Button 
         	android:id="@+id/locateBut"
@@ -70,7 +70,7 @@
         	android:layout_weight="1"
         	android:text="@string/button_locate"
         	android:textSize="12sp"
-        	android:enabled="false"/>
+        	android:enabled="true"/>
     	  	
     </LinearLayout>
     
