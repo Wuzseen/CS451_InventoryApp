@@ -46,7 +46,7 @@ public class InventoryItem implements Serializable {
 	}
 	
 	public boolean equals(InventoryItem i) {
-		return this.getId() == i.getId();
+		return this.getId().intValue() == i.getId().intValue();
 	}
 	public boolean equals(Integer itemId) {
 		return this.getId().equals(itemId);

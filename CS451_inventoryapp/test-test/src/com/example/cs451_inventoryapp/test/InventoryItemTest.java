@@ -1,7 +1,9 @@
 package com.example.cs451_inventoryapp.test;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import junit.framework.Assert;
@@ -65,6 +67,28 @@ public class InventoryItemTest extends AndroidTestCase {
 	}
 	
 	public void testItemDeserialize() {
+		InventoryItem item1 = new InventoryItem("Test");
+		String filename = "testserial.invitem";
+		FileOutputStream fos = null;
+		ObjectOutputStream out = null;
+		Context c = this.getContext();
+		try {
+			fos = c.openFileOutput(filename,Context.MODE_PRIVATE);//new FileOutputStream(filename);
+			out = new ObjectOutputStream(fos);
+			out.writeObject(item1);
+		} catch (Exception ex) {
+			Assert.fail(String.format("Could not serialize: %s", ex.toString()));
+		}
 		
+		FileInputStream fis = null;
+		ObjectInputStream in = null;
+		try {
+			fis = c.openFileInput(filename);
+			in = new ObjectInputStream(fis);
+			InventoryItem t = (InventoryItem)in.readObject();
+			Assert.assertTrue(t.equals(item1));
+		} catch(Exception ex) {
+			Assert.fail(String.format("Could not deserialize object: %s", ex.toString()));
+		}
 	}
 }
