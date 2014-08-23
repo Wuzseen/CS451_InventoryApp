@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+	<LinearLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical"
+    	android:layout_alignParentTop="true" >
+    	<!-- Barcode entry box -->
+    	<TextView
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/barcode_label"
+        	android:padding="12dp"/>
+    	<LinearLayout
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:orientation="horizontal">
+    	    <EditText
+        		android:id="@+id/barcodeEntry"
+        		android:layout_width="0dp"
+        		android:layout_height="wrap_content"
+        		android:layout_weight="2"
+        		android:hint="@string/barcode_hint"/>
+   	 		<Button 
+   	 	    	android:id="@+id/scan"
+   	 	    	android:layout_width="0dp"
+   	 	    	android:layout_height="wrap_content"
+   	 	    	android:layout_weight="1"
+   	 	    	android:paddingLeft="8dp"
+   	 	    	android:text="@string/button_scan"/>
+    	</LinearLayout>
+    	<!-- SKU entry box -->
+    	<TextView
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/sku_label"
+        	android:padding="12dp"/>
+    	<EditText
+        	android:id="@+id/skuEntry"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:hint="@string/sku_hint"/>
+    	<!-- Description/Name entry box -->
+    	<TextView
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/desc_name_label"
+        	android:padding="12dp"/>
+    	<EditText
+        	android:id="@+id/dnameEntry"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:hint="@string/desc_name_hint"/>
+    	<!-- Location -->
+    	<TextView
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/location_label"
+        	android:padding="12dp"/>
+    	<EditText
+        	android:id="@+id/locationEntry"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:hint="@string/location_hint"/>
+    	<TextView
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:text="@string/in_stock"
+    	    android:padding="12dp"/>
+    	<TextView
+    	    android:id="@+id/stock"
+    	    android:layout_height="wrap_content"
+    	    android:layout_width="wrap_content"
+    	    android:textSize="20sp"
+    	    android:layout_marginLeft="16dp"
+    	    android:textStyle="bold"/>
+	</LinearLayout>
+	
+	<Button
+	    android:id="@+id/updateInventoryBut"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/button_update"
+	    android:layout_alignParentBottom="true"
+	    android:layout_margin="16dp"/>  
+	<Button
+	    android:id="@+id/saveBut"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/button_save"
+	    android:layout_alignParentBottom="true"
+	    android:layout_margin="16dp"
+	    android:layout_toRightOf="@id/updateInventoryBut"/>   
+</RelativeLayout>
+
+

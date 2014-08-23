@@ -14,8 +14,7 @@ public class SQLTest extends TestCase {
 	SQLHandler handler = new SQLHandler();
 
     @Override
-    protected void setUp() throws Exception
-    {
+    protected void setUp() throws Exception {
         super.setUp();
         this.handler = new SQLHandler();
     }
