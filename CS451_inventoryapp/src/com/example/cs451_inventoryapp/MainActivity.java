@@ -48,46 +48,6 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-        iManager = new InventoryManager();
-        Location rootLocation = new Location("Root");
-        iManager.addRootLocation(rootLocation);
-        InventoryItem wSnack = new InventoryItem("WalrusSnack");
-        wSnack.addCount(3);
-        rootLocation.addItem(wSnack);
-        InventoryItem wDinner = new InventoryItem("WalrusDinner");
-        rootLocation.addItem(wDinner);
-        barcode_entry = (EditText) findViewById(R.id.barcodeSearch);
-        
-        Button scanBut = (Button) findViewById(R.id.scanBut);
-        Button newBut = (Button) findViewById(R.id.newBut);
-        Button editBut = (Button) findViewById(R.id.editBut);
-        Button inventoryBut = (Button) findViewById(R.id.inventoryBut);
-        Button locateBut = (Button) findViewById(R.id.locateBut);
-        Button searchBut = (Button) findViewById(R.id.searchBut);
-        
-        barcode_entry.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				// TODO Auto-generated method stub
-				
-			}
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
-				
-			}
-        });
-        
-=======
         searchBx = (EditText) findViewById(R.id.searchBx);
         scanBut = (Button) findViewById(R.id.scanBut);
         itemBut = (Button) findViewById(R.id.itemBut);
@@ -116,7 +76,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 				return false;
 			}
         });
->>>>>>> 09cb45ef25ba6d4a8df385ecb1a782967950de3a
+
         // Start up barcode scanning
         scanBut.setOnClickListener(new OnClickListener() {
 			@Override
