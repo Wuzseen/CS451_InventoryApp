@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="search_array">
+        <item>Barcode</item>
+        <item>Name</item>
+        <item>Location</item>
+        <item>SKU</item>
+    </string-array>
+</resources>
