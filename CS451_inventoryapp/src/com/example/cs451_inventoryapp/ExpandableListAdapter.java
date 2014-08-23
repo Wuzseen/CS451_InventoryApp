@@ -13,7 +13,8 @@ import android.widget.TextView;
 /**
  * This class was created using the tutorial here
  * http://www.androidhive.info/2013/07/android-expandable-list-view-tutorial/
- * @author M.Yala
+ * This is a 2-part expandable list that displays items and locations found 
+ * from a search query.
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	private Context _context;

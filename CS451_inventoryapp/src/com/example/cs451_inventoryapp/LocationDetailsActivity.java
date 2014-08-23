@@ -4,7 +4,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+/**
+ * This activity shows a user the list of all the 
+ * items located in the chosen location
+ */
 public class LocationDetailsActivity extends ActionBarActivity {
 
 	@Override

@@ -16,7 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+/**
+ * This activity allows the user to enter information about a new item. This 
+ * activity is also reused whenever a user wants to edit information about a 
+ * specific item.
+ */
 public class NewItemActivity extends ActionBarActivity 
 	implements onSubmitListener{
 	Button scanBut;

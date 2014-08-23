@@ -16,7 +16,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
-
+/**
+ * This fragment is a dialog window that pops up when the user clicks 
+ * the "update inventory" button and allows a user to adjust the 
+ * number of items in stock by either adding or subtracting items. 
+ */
 public class InventoryDialog extends DialogFragment{
 	public Activity mActivity;
 	public Dialog mDialog;

@@ -20,7 +20,12 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.Spinner;
 import android.widget.Toast;
-
+/**
+ * This is the first activity the user sees when the application launches, 
+ * It displays a number of buttons and a search box that the user can interact
+ * with. If a user attempts to search for an item, an expandable list view
+ * is shown, showing the items and locations. 
+ */
 public class MainActivity extends ActionBarActivity implements OnItemSelectedListener{
 	Button searchBut;
 	Button scanBut;

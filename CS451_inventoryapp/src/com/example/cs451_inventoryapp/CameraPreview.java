@@ -9,7 +9,10 @@ import android.hardware.Camera.PreviewCallback;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
+/**
+ * This class is required by the Barcode Scanner Activity
+ * and is used when reading barcodes
+ */
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
 	private SurfaceHolder mHolder;
     private Camera mCamera;

@@ -43,52 +43,6 @@ public class MainActivityCopy extends ActionBarActivity {
 				Intent scanABarcodeIntent = new Intent(MainActivityCopy.this, BarcodeScannerActivity.class);
 				startActivityForResult(scanABarcodeIntent, SCAN_BARCODE_REQUEST);
 			}
-		});
-        
-        // Add the fragment to the 'fragment_container' FrameLayout        
-        newBut.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				MainActivityCopy.this.fragment = new NewEditFragment();
-		        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-				transaction.replace(R.id.fragment_container, fragment);
-				transaction.addToBackStack(null);
-				transaction.commit();
-			}
-		});
-        
-        editBut.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				MainActivityCopy.this.fragment = new NewEditFragment();
-				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-				transaction.replace(R.id.fragment_container, fragment);
-				transaction.addToBackStack(null);
-				transaction.commit();
-			}
-		});
-        
-        inventoryBut.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				/*
-				MainActivityCopy.this.fragment = new InventoryFragment();
-				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-				transaction.replace(R.id.fragment_container, fragment);
-				transaction.addToBackStack(null);
-				transaction.commit();*/
-			}
-		});
-        
-        locateBut.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO MainActivity.this.fragment = new LocateFragment();
-				// FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-				// transaction.replace(R.id.fragment_container, fragment);
-				// transaction.addToBackStack(null);
-				// transaction.commit();
-			}
 		});   
         
         searchBut.setOnClickListener(new View.OnClickListener() {

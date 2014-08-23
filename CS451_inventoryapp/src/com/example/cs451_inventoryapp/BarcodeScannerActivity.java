@@ -19,7 +19,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
+/**
+ * This activity uses the ZBar bar code reader to scan a barcode
+ * using the phone's camera. The barcode is then used to implement
+ * a search for an item in the database. 
+ */
 public class BarcodeScannerActivity extends ActionBarActivity {
 	
 	private Camera mCamera;
