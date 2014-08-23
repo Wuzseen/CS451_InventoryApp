@@ -16,6 +16,20 @@ public class InventoryItem implements Serializable, ISerialize {
 
 	private static Integer idCount = 1;
 	
+	private Integer count;
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer i) {
+		count = i;
+	}
+	public void addCount(Integer i) {
+		count += i;
+	}
+	public void subtractCount(Integer i)  {
+		count -= i;
+	}
+	
 	private Integer id;
 	public Integer getId() {
 		return id;
@@ -41,10 +55,21 @@ public class InventoryItem implements Serializable, ISerialize {
 		this.id = idCount;
 		InventoryItem.idCount++;
 		this.name = itemName;
+		this.count = 1;
 	}
 	
 	public InventoryItem(String itemName) {
 		this.Setup(itemName);
+	}
+	
+	public InventoryItem(String itemName, Integer num) {
+		this.Setup(itemName);
+		this.count = num;
+	}
+	
+	public InventoryItem(Integer num) {
+		this();
+		this.count = num;
 	}
 	
 	public InventoryItem() {

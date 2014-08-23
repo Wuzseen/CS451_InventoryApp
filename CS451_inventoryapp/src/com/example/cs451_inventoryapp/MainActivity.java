@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +28,11 @@ public class MainActivity extends ActionBarActivity {
         iManager = new InventoryManager();
         Location rootLocation = new Location("Root");
         iManager.addRootLocation(rootLocation);
-        rootLocation.addItem(new InventoryItem("WalrusSnack"));
+        InventoryItem wSnack = new InventoryItem("WalrusSnack");
+        wSnack.addCount(3);
+        rootLocation.addItem(wSnack);
+        InventoryItem wDinner = new InventoryItem("WalrusDinner");
+        rootLocation.addItem(wDinner);
         barcode_entry = (EditText) findViewById(R.id.barcodeSearch);
         
         Button scanBut = (Button) findViewById(R.id.scanBut);
@@ -35,6 +41,27 @@ public class MainActivity extends ActionBarActivity {
         Button inventoryBut = (Button) findViewById(R.id.inventoryBut);
         Button locateBut = (Button) findViewById(R.id.locateBut);
         Button searchBut = (Button) findViewById(R.id.searchBut);
+        
+        barcode_entry.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
         
         // Start up barcode scanning
         scanBut.setOnClickListener(new View.OnClickListener() {
