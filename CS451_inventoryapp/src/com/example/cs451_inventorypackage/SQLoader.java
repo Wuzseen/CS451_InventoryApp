@@ -61,8 +61,9 @@ public class SQLoader {
     		im.addLocation(i);
     		i.setName(components[1]);
     		i.setBarcode(components[2]);
+    		i.isRoot = components[3].equals("1");
     		boolean sublocations = true;
-    		for(int z = 3; z < components.length; z++) {
+    		for(int z = 4; z < components.length; z++) {
     			if(components[z].equals("#SPLIT#")) { // This is a sentinel reserved to divide between locations and items;
     				sublocations = false;
     				continue;
@@ -101,6 +102,7 @@ public class SQLoader {
 			args.add(new BasicNameValuePair("Subs",l.subLocationSQLString()));
 			args.add(new BasicNameValuePair("Items",l.itemSQLString()));
 			args.add(new BasicNameValuePair("Barcode",l.getBarcode()));
+			args.add(new BasicNameValuePair("Root",l.isRoot == true ? "1" : "0"));
 			handler.makePost(address, args);
 		}
 	}
