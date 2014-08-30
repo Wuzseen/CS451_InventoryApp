@@ -71,8 +71,12 @@ public class Location implements ISearchable<Location> {
 		}
 		return ret;
 	}
+	
+	public boolean isRoot = true;
+	
 	public void addSubLocation(Location l) {
 		this.subLocations.add(l);
+		l.isRoot = false;
 	}
 	public boolean removeSubLocation(int index) {
 		return this.subLocations.remove(index) != null;

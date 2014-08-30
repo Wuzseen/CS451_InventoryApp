@@ -79,6 +79,11 @@ public class SQLoader {
     	for(Location l : ret) {
     		l.LoadFromSubIDs();
     	}
+    	for(Location l: ret) {
+    		if(l.isRoot) {
+    			im.addRootLocation(l);
+    		}
+    	}
 		return ret;
 	}
 	
