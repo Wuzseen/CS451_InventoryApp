@@ -1,11 +1,16 @@
 package com.example.cs451_inventoryapp;
 
 import com.example.cs451_inventoryapp.InventoryDialog.onSubmitListener;
+import com.example.cs451_inventorypackage.Barcode;
+import com.example.cs451_inventorypackage.InventoryItem;
+import com.example.cs451_inventorypackage.InventoryManager;
+import com.example.cs451_inventorypackage.SQLoader;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +39,19 @@ public class NewItemActivity extends ActionBarActivity
 
 	static final int SCAN_BARCODE_REQUEST = 1; // request code to send to BarcodeScannerActivity
 	static final int RESULT_OK = 0;
+	
+	/* New item attributes */
+	Barcode ibarcode;
+	Location ilocation;
+	String iSKU;
+	String iname;
+	int istock;
+	/* The item itself */
+	InventoryItem mitem = new InventoryItem();
+	/* Something to manage the inventory */
+	InventoryManager imanager;
+	/* Something to save and load to the SQL DB */
+	SQLoader msqlloader = new SQLoader();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +95,16 @@ public class NewItemActivity extends ActionBarActivity
 			@Override
 			public void onClick(View v) {
 				String b = barcode.getText().toString();
+				ibarcode = new Barcode(b);
 				String sku = SKU.getText().toString();
 				String name = dName.getText().toString();
 				String loc = location.getText().toString();
+				ilocation = new Location();
 				// TODO Save new item to the database then close activity
+				mitem.setBarcode(ibarcode);
+				mitem.setName(name);
+				mitem.setSKU(sku);
+				mitem.setLoc()
 			}
 		});
 	}

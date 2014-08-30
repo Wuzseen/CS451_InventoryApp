@@ -207,4 +207,9 @@ public class Location implements ISearchable<Location> {
 			l.assembleLocationListContaining(list, search);
 		}
 	}
+	public ArrayList<InventoryItem> findItemsWithBarcode(String barcode) {
+		ArrayList<InventoryItem> ret = new ArrayList<InventoryItem>();
+		assembleItemList(ret, barcode);
+		return ret;
+	}
 }

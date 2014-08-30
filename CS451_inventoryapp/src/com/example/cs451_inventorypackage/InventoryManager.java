@@ -51,4 +51,13 @@ public class InventoryManager {
 		}
 		return ret;
 	}
+	
+	public FindResult<InventoryItem> findByBarcode(String code) {
+		// Searches through locations
+		FindResult<InventoryItem> ret = new FindResult<InventoryItem>();
+		for(Location l : locationListing) {
+			ret.addItems(l.findItemsWithBarcode(code));
+		}
+		return ret;
+	}
 }

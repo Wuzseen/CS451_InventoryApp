@@ -48,6 +48,9 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        iManager = new InventoryManager();
+        
         searchBx = (EditText) findViewById(R.id.searchBx);
         scanBut = (Button) findViewById(R.id.scanBut);
         itemBut = (Button) findViewById(R.id.itemBut);

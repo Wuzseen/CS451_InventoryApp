@@ -54,6 +54,14 @@ public class InventoryItem implements Serializable, ISerialize {
 		this.name = name;
 	}
 	
+	private String sku;
+	public String getSKU(){
+		return sku;
+	}
+	public void setSKU(String sku){
+		this.sku = sku;
+	}
+	
 	private void Setup(String itemName) {
 		this.id = idCount;
 		InventoryItem.idCount++;
