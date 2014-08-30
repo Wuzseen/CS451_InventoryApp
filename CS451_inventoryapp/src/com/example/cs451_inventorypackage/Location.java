@@ -9,12 +9,18 @@ public class Location implements ISearchable<Location> {
 	public Integer getId() {
 		return id;
 	}
+	public void setId(int val) {
+		id = val;
+		if(val > idCount) {
+			idCount = val + 1;
+		}
+	}
 	
-	private Barcode barcode;
-	public Barcode getBarcode() {
+	private String barcode;
+	public String getBarcode() {
 		return this.barcode;
 	}
-	public void setBarcode(Barcode bc) {
+	public void setBarcode(String bc) {
 		this.barcode = bc;
 	}
 	
@@ -22,6 +28,13 @@ public class Location implements ISearchable<Location> {
 	private ArrayList<InventoryItem> itemList;
 	public ArrayList<InventoryItem> getItemList() {
 		return itemList;
+	}
+	public String itemSQLString() {
+		String ret = itemList.get(0).getId().toString();
+		for(int i = 1; i < itemList.size(); i++) {
+			ret += "," + itemList.get(i).getId().toString();
+		}
+		return ret;
 	}
 
 	private String name;
@@ -35,6 +48,13 @@ public class Location implements ISearchable<Location> {
 	private ArrayList<Location> subLocations;
 	public ArrayList<Location> getSubLocations() {
 		return this.subLocations;
+	}
+	public String subLocationSQLString() {
+		String ret = subLocations.get(0).getId().toString();
+		for(int i = 1; i < subLocations.size(); i++) {
+			ret += "," + subLocations.get(i).getId().toString();
+		}
+		return ret;
 	}
 	public void addSubLocation(Location l) {
 		this.subLocations.add(l);

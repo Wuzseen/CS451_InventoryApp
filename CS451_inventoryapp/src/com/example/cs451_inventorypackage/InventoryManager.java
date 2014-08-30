@@ -5,8 +5,16 @@ import java.util.ArrayList;
 // Handles hierarchy of locations
 public class InventoryManager {
 	private ArrayList<Location> locationListing;
+	private static InventoryManager instance;
+	public static InventoryManager Instance() {
+		if(instance == null) {
+			instance = new InventoryManager();
+		}
+		return instance;
+	}
 	
 	public InventoryManager() {
+		instance = this;
 		this.locationListing = new ArrayList<Location>();
 	}
 	
