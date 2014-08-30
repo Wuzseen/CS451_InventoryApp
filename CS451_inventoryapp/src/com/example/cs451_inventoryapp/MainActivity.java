@@ -9,8 +9,6 @@ import com.example.cs451_inventorypackage.*;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -29,6 +27,9 @@ import android.widget.Toast;
  * is shown, showing the items and locations. 
  */
 public class MainActivity extends ActionBarActivity implements OnItemSelectedListener{
+	/* TODO
+	 * Items need to be loaded first
+	 */
 	Button searchBut;
 	Button scanBut;
 	Button itemBut;
@@ -40,9 +41,11 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 	ExpandableListView elistView;
 	List<String> listDataHeader;
 	HashMap<String, List<String>> listDataChild;
-	
+	ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
 	InventoryManager iManager;
+	
 	static final int SCAN_BARCODE_REQUEST = 1; // request code to send to BarcodeScannerActivity
+	static final int NEW_EDIT_ITEM_REQUEST = 2; // request code to send to the NewItemActivity
 	static final int RESULT_OK = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +97,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 			@Override
 			public void onClick(View v) {
 				Intent newItemIntent = new Intent(MainActivity.this, NewItemActivity.class);
-				startActivity(newItemIntent);
+				startActivityForResult(newItemIntent, NEW_EDIT_ITEM_REQUEST);
 			}
         });
         
@@ -172,10 +175,27 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     			}
     			
     		}
+    	} else if(requestcode == NEW_EDIT_ITEM_REQUEST) {
+    		// Check if request was successful
+    		if (resultcode == RESULT_OK){
+    			// Get the returned Inventory item and add it to the list.
+    			if (data == null) {
+    				return;
+    			} else {
+    				InventoryItem item = (InventoryItem) data.getExtras().get("item"); 
+    				items.add(item);
+    			}
+    		}
     	} else {
     		Toast.makeText(this,"Couldn't scan barcode", Toast.LENGTH_SHORT).show();;
     	}
     }
+	
+	@Override
+	public void onDestroy(){
+		super.onDestroy();
+		SQLoader.saveItems(items);
+	}
 
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,

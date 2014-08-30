@@ -62,6 +62,14 @@ public class InventoryItem implements Serializable, ISerialize {
 		this.sku = sku;
 	}
 	
+	private Location location;
+	public Location getLoc(){
+		return location;
+	}
+	public void setLoc(Location loc){
+		this.location = loc;
+	}
+	
 	private void Setup(String itemName) {
 		this.id = idCount;
 		InventoryItem.idCount++;
