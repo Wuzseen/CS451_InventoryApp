@@ -5,6 +5,30 @@ import java.util.ArrayList;
 // Handles hierarchy of locations
 public class InventoryManager {
 	private ArrayList<Location> locationListing;
+	private ArrayList<Location> allLocations; // only matters for loading
+	private ArrayList<InventoryItem> allItems;
+	public void addLocation(Location l) {
+		allLocations.add(l);
+	}
+	public void addItem(InventoryItem i) {
+		allItems.add(i);
+	}
+	public Location locationLookup(int id) {
+		for(Location l : allLocations) {
+			if(l.getId() == id) {
+				return l;
+			}
+		}
+		return null;
+	}
+	public InventoryItem itemLookup(int id) {
+		for(InventoryItem i : allItems) {
+			if(i.getId() == id) {
+				return i;
+			}
+		}
+		return null;
+	}
 	private static InventoryManager instance;
 	public static InventoryManager Instance() {
 		if(instance == null) {
@@ -16,6 +40,8 @@ public class InventoryManager {
 	public InventoryManager() {
 		instance = this;
 		this.locationListing = new ArrayList<Location>();
+		this.allLocations = new ArrayList<Location>();
+		this.allItems = new ArrayList<InventoryItem>();
 	}
 	
 	public void addRootLocation(Location l) {

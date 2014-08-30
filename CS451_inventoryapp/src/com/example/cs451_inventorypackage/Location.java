@@ -45,6 +45,21 @@ public class Location implements ISearchable<Location> {
 		this.name = name;
 	}
 	
+	private ArrayList<Integer> subIds;
+	public void addSubId(Integer id) {
+		if(subIds == null) {
+			subIds = new ArrayList<Integer>();
+		}
+		subIds.add(id);
+	}
+	
+	public void LoadFromSubIDs() {
+		InventoryManager im = InventoryManager.Instance();
+		for(Integer i : subIds) {
+			this.addSubLocation(im.locationLookup(i));
+		}
+	}
+	
 	private ArrayList<Location> subLocations;
 	public ArrayList<Location> getSubLocations() {
 		return this.subLocations;

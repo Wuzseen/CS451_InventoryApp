@@ -14,10 +14,12 @@ public class SQLoader {
 		}
     	String html = handler.makePost("http://www.timjbday.com/classtuff/findItem.php", null);
     	String[] allItems = html.split("<br>");
+    	InventoryManager im = InventoryManager.Instance();
     	ArrayList<InventoryItem> ret = new ArrayList<InventoryItem>();
     	for(String itemString : allItems) {
     		String[] components = itemString.split(",");
     		InventoryItem i = new InventoryItem();
+    		im.addItem(i);
     		i.setId(Integer.parseInt(components[0]));
     		i.setName(components[1]);
     		i.setCount(Integer.parseInt(components[2]));
@@ -56,6 +58,7 @@ public class SQLoader {
     		String[] components = itemString.split(",");
     		Location i = new Location();
     		i.setId(Integer.parseInt(components[0]));
+    		im.addLocation(i);
     		i.setName(components[1]);
     		i.setBarcode(components[2]);
     		boolean sublocations = true;
@@ -65,13 +68,16 @@ public class SQLoader {
     				continue;
     			}
     			if(sublocations) {
-    				//i.addSu
+    				i.addSubId(Integer.parseInt(components[z]));
     			} else {
-    				
+    				i.addItem(im.itemLookup(Integer.parseInt(components[z])));
     			}
     		}
     		
     		ret.add(i);
+    	}
+    	for(Location l : ret) {
+    		l.LoadFromSubIDs();
     	}
 		return ret;
 	}
