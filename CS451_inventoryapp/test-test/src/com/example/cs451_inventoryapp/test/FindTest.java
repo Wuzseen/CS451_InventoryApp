@@ -2,6 +2,7 @@ package com.example.cs451_inventoryapp.test;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
+
 import com.example.cs451_inventorypackage.*;
 
 public class FindTest extends TestCase{

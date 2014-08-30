@@ -16,6 +16,9 @@ public final class R {
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
     }
+    public static final class array {
+        public static final int search_array=0x7f0c0000;
+    }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -1091,55 +1094,70 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050053;
+        public static final int action_settings=0x7f050064;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
-        public static final int amountPicker=0x7f05004d;
-        public static final int barcodeEntry=0x7f050050;
-        public static final int barcodeSearch=0x7f050041;
+        public static final int amountPicker=0x7f05005f;
+        public static final int barcodeEntry=0x7f05004d;
+        public static final int barcodeSearch=0x7f050047;
         public static final int beginning=0x7f050011;
         public static final int cameraPreview=0x7f05003c;
         public static final int camerascanBut=0x7f05003e;
-        public static final int cancel=0x7f05004f;
+        public static final int cancel=0x7f050061;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
+        public static final int currentStock=0x7f050059;
         public static final int default_activity_button=0x7f050028;
+        public static final int deleteBut=0x7f050055;
         public static final int dialog=0x7f05000e;
         public static final int disableHome=0x7f050008;
-        public static final int dnameEntry=0x7f050052;
+        public static final int dnameEntry=0x7f050050;
         public static final int doneBut=0x7f05003f;
         public static final int dropdown=0x7f05000f;
-        public static final int editBut=0x7f050044;
+        public static final int editBut=0x7f050049;
         public static final int edit_query=0x7f050030;
         public static final int end=0x7f050013;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
-        public static final int fragment_container=0x7f050047;
+        public static final int fragment_container=0x7f05004c;
         public static final int home=0x7f050014;
         public static final int homeAsUp=0x7f050005;
         public static final int icon=0x7f05002a;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
-        public static final int inventoryBut=0x7f050045;
-        public static final int inventory_action_hdr=0x7f050048;
+        public static final int inventoryBut=0x7f05004a;
+        public static final int inventory_action_hdr=0x7f05005a;
+        public static final int itemBut=0x7f050041;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
-        public static final int locateBut=0x7f050046;
+        public static final int locLabel=0x7f050056;
+        public static final int locName=0x7f050057;
+        public static final int locateBut=0x7f05004b;
+        public static final int locationBut=0x7f050042;
+        public static final int locationEntry=0x7f050051;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
-        public static final int newBut=0x7f050043;
+        public static final int newBut=0x7f050048;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
-        public static final int ok=0x7f05004e;
+        public static final int ok=0x7f050060;
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
-        public static final int radio_add=0x7f05004b;
-        public static final int radio_group=0x7f05004a;
-        public static final int radio_subtract=0x7f05004c;
+        public static final int radio_add=0x7f05005d;
+        public static final int radio_group=0x7f05005c;
+        public static final int radio_subtract=0x7f05005e;
+        public static final int saveBut=0x7f050054;
+        public static final int saveLoc=0x7f050058;
+        public static final int scan=0x7f05004e;
         public static final int scanBut=0x7f050040;
         public static final int scanText=0x7f05003d;
-        public static final int searchBut=0x7f050042;
+        public static final int searchBut=0x7f050045;
+        public static final int searchBx=0x7f050044;
+        public static final int searchHeader=0x7f050062;
+        public static final int searchListItem=0x7f050063;
+        public static final int searchRes=0x7f050046;
+        public static final int searchSpin=0x7f050043;
         public static final int search_badge=0x7f050032;
         public static final int search_bar=0x7f050031;
         public static final int search_button=0x7f050033;
@@ -1150,18 +1168,20 @@ containing a value of this type.
         public static final int search_plate=0x7f050036;
         public static final int search_src_text=0x7f050037;
         public static final int search_voice_btn=0x7f05003b;
-        public static final int separator=0x7f050049;
+        public static final int separator=0x7f05005b;
         public static final int shortcut=0x7f05002e;
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
-        public static final int skuEntry=0x7f050051;
+        public static final int skuEntry=0x7f05004f;
         public static final int split_action_bar=0x7f05001e;
+        public static final int stock=0x7f050052;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
+        public static final int updateInventoryBut=0x7f050053;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
     }
@@ -1216,13 +1236,24 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_barcode_scanner=0x7f030018;
-        public static final int activity_main=0x7f030019;
-        public static final int inventory_fragment=0x7f03001a;
-        public static final int newedit_fragment=0x7f03001b;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
+        public static final int activity_location_details=0x7f030019;
+        public static final int activity_main=0x7f03001a;
+        public static final int activity_main_copy=0x7f03001b;
+        public static final int activity_new_item=0x7f03001c;
+        public static final int activity_new_location=0x7f03001d;
+        public static final int activity_splash_screen=0x7f03001e;
+        public static final int inventory_fragment=0x7f03001f;
+        public static final int newedit_fragment=0x7f030020;
+        public static final int search_results_list_group=0x7f030021;
+        public static final int search_results_list_item=0x7f030022;
+        public static final int support_simple_spinner_dropdown_item=0x7f030023;
     }
     public static final class menu {
-        public static final int barcode_scanner=0x7f0c0000;
+        public static final int barcode_scanner=0x7f0d0000;
+        public static final int location_details=0x7f0d0001;
+        public static final int new_item=0x7f0d0002;
+        public static final int new_location=0x7f0d0003;
+        public static final int splash_screen=0x7f0d0004;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1265,39 +1296,53 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
-        public static final int action_settings=0x7f0a0026;
-        public static final int addamount=0x7f0a0015;
-        public static final int amount_label=0x7f0a0020;
+        public static final int action_settings=0x7f0a002b;
+        public static final int addamount=0x7f0a0017;
+        public static final int amount_label=0x7f0a0021;
         public static final int app_name=0x7f0a000d;
         /**  Hints 
          */
-        public static final int barcode_hint=0x7f0a0021;
+        public static final int barcode_hint=0x7f0a0025;
         /**  Labels 
          */
-        public static final int barcode_label=0x7f0a001b;
-        public static final int button_done=0x7f0a001a;
-        public static final int button_edit=0x7f0a0012;
-        public static final int button_inventory=0x7f0a0013;
-        public static final int button_locate=0x7f0a0014;
-        public static final int button_new=0x7f0a0011;
-        public static final int button_scan=0x7f0a0019;
-        public static final int button_search=0x7f0a0010;
-        public static final int cancel=0x7f0a0018;
-        public static final int desc_name_hint=0x7f0a0023;
-        public static final int desc_name_label=0x7f0a001d;
+        public static final int barcode_label=0x7f0a001c;
+        public static final int button_done=0x7f0a001b;
+        public static final int button_edit=0x7f0a0014;
+        public static final int button_inventory=0x7f0a0015;
+        public static final int button_item=0x7f0a002e;
+        public static final int button_locate=0x7f0a0016;
+        public static final int button_location=0x7f0a002f;
+        public static final int button_new=0x7f0a0013;
+        public static final int button_save=0x7f0a0030;
+        /**  Main Buttons 
+         */
+        public static final int button_scan=0x7f0a002d;
+        public static final int button_search=0x7f0a0012;
+        public static final int button_update=0x7f0a0031;
+        public static final int cancel=0x7f0a001a;
+        public static final int desc_name_hint=0x7f0a0027;
+        public static final int desc_name_label=0x7f0a001e;
         /**  Buttons 
          */
-        public static final int enterbarcode=0x7f0a000f;
-        public static final int hello_world=0x7f0a0025;
-        public static final int instock_label=0x7f0a001e;
-        public static final int inventoryaction=0x7f0a001f;
+        public static final int enterbarcode=0x7f0a0011;
+        public static final int hello_world=0x7f0a002a;
+        public static final int in_stock=0x7f0a0024;
+        public static final int instock_label=0x7f0a001f;
+        public static final int inventoryaction=0x7f0a0020;
+        public static final int location_hint=0x7f0a0028;
+        public static final int location_label=0x7f0a0023;
         public static final int nodata=0x7f0a000e;
-        public static final int okay=0x7f0a0017;
-        public static final int scan_text=0x7f0a0027;
-        public static final int sku_hint=0x7f0a0022;
-        public static final int sku_label=0x7f0a001c;
-        public static final int subtractamount=0x7f0a0016;
-        public static final int title_activity_barcode_scanner=0x7f0a0024;
+        public static final int okay=0x7f0a0019;
+        public static final int or=0x7f0a0022;
+        public static final int scan_text=0x7f0a002c;
+        public static final int sku_hint=0x7f0a0026;
+        public static final int sku_label=0x7f0a001d;
+        public static final int subtractamount=0x7f0a0018;
+        public static final int title_activity_barcode_scanner=0x7f0a0029;
+        public static final int title_activity_location_details=0x7f0a0032;
+        public static final int title_activity_new_item=0x7f0a000f;
+        public static final int title_activity_new_location=0x7f0a0010;
+        public static final int title_activity_splash_screen=0x7f0a0033;
     }
     public static final class style {
         /** 
@@ -2676,7 +2721,7 @@ containing a value of this type.
          */
         public static final int[] MenuView = {
             0x010100ae, 0x0101012c, 0x0101012d, 0x0101012e,
-            0x0101012f, 0x01010130, 0x01010131, 0x01010438
+            0x0101012f, 0x01010130, 0x01010131, 0x01010435
         };
         /**
           <p>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">CS451_inventoryapp</string>
+    <string name="app_name">tIm</string>
     <string name="nodata">None</string>
     <string name="title_activity_new_item">Create a new item</string>
     <string name="title_activity_new_location">Add a new location</string>
@@ -47,5 +47,6 @@
     <string name="button_save">Save</string>
     <string name="button_update">Update inventory</string>
     <string name="title_activity_location_details">Location</string>
+    <string name="title_activity_splash_screen">Welcome to tIm</string>
 
 </resources>

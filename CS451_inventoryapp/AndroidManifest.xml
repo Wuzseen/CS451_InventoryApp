@@ -47,6 +47,10 @@
             android:name=".LocationDetailsActivity"
             android:label="@string/title_activity_location_details" >
         </activity>
+        <activity
+            android:name=".SplashScreenActivity"
+            android:label="@string/title_activity_splash_screen" >
+        </activity>
     </application>
 
 </manifest>
