@@ -34,6 +34,9 @@ public class InventoryItem implements Serializable, ISerialize {
 	public Integer getId() {
 		return id;
 	}
+	public void setId(int val) {
+		id = val;
+	}
 	
 	private Barcode barcode;
 	public Barcode getBarcode() {

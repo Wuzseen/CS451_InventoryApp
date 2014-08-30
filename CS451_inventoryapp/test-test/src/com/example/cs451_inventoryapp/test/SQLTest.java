@@ -3,7 +3,6 @@ package com.example.cs451_inventoryapp.test;
 import java.util.ArrayList;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
