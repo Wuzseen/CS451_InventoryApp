@@ -45,8 +45,9 @@
     <string name="button_item">Add new item</string>
     <string name="button_location">Add new location</string>
     <string name="button_save">Save</string>
-    <string name="button_update">Update inventory</string>
+    <string name="button_update">Inventory</string>
     <string name="title_activity_location_details">Location</string>
     <string name="title_activity_splash_screen">Welcome to tIm</string>
+    <string name="button_delete">Delete</string>
 
 </resources>

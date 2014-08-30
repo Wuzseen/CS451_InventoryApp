@@ -1306,6 +1306,7 @@ containing a value of this type.
         /**  Labels 
          */
         public static final int barcode_label=0x7f0a001c;
+        public static final int button_delete=0x7f0a0034;
         public static final int button_done=0x7f0a001b;
         public static final int button_edit=0x7f0a0014;
         public static final int button_inventory=0x7f0a0015;

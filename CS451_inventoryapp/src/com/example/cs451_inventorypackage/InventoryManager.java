@@ -94,4 +94,12 @@ public class InventoryManager {
 		}
 		return ret;
 	}
+	
+	public ArrayList<Location> getAllLoc(){
+		return allLocations;
+	}
+	
+	public ArrayList<InventoryItem> getAllItems(){
+		return allItems;
+	}
 }

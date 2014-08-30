@@ -79,7 +79,14 @@ public class InventoryDialog extends DialogFragment{
 			@Override
 			public void onClick(View v) {
 				int c = Integer.parseInt(current);
-				int n = Integer.parseInt(amount.getText().toString());
+				String mInt = amount.getText().toString();
+				int n;
+				if (mInt == ""){
+					n = 0;
+				} else {
+					n = Integer.parseInt(amount.getText().toString());
+				}
+				
 				int f = 0;
 				
 				if(action.equalsIgnoreCase("A")){

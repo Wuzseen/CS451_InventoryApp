@@ -3,12 +3,15 @@ package com.example.cs451_inventoryapp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import com.example.cs451_inventorypackage.*;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -44,6 +47,9 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 	ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
 	InventoryManager iManager;
 	
+	ArrayList<InventoryItem> allItems = new ArrayList<InventoryItem>();
+	ArrayList<Location> allLoc = new ArrayList<Location>();
+	
 	static final int SCAN_BARCODE_REQUEST = 1; // request code to send to BarcodeScannerActivity
 	static final int NEW_EDIT_ITEM_REQUEST = 2; // request code to send to the NewItemActivity
 	static final int RESULT_OK = 0;
@@ -51,8 +57,26 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TimDBTask tIm = new TimDBTask();
+        tIm.execute("load");
+        try {
+			String res = tIm.get();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
         
-        iManager = new InventoryManager();
+        iManager = InventoryManager.Instance();
+        allLoc = iManager.getAllLoc();
+        for(int i = 0; i<allLoc.size(); i++){
+        	Log.i("Location found", allLoc.get(i).getName());
+        }
+        
+        allItems = iManager.getAllItems();
+        for(int j = 0; j<allItems.size(); j++){
+        	Log.i("Items found", allItems.get(j).getName());
+        }
         
         searchBx = (EditText) findViewById(R.id.searchBx);
         scanBut = (Button) findViewById(R.id.scanBut);
@@ -184,6 +208,8 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     			} else {
     				InventoryItem item = (InventoryItem) data.getExtras().get("item"); 
     				items.add(item);
+    				TimDBTask tIm_save = new TimDBTask();
+    				tIm_save.execute("save");
     			}
     		}
     	} else {
@@ -194,7 +220,6 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
-		SQLoader.saveItems(items);
 	}
 
 	@Override
@@ -223,5 +248,24 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
 		// TODO Auto-generated method stub
+	}
+	
+	private class TimDBTask extends AsyncTask<String,Void,String>{
+
+		@Override
+		protected String doInBackground(String... params) {
+			String action = params[0];
+			String success = "done";
+			if (action == "load"){
+				ArrayList<InventoryItem> items_arr = new ArrayList<InventoryItem>();
+				items_arr = SQLoader.allItems();
+				ArrayList<Location> loc_arr = new ArrayList<Location>();
+				loc_arr = SQLoader.allLocations();
+				
+			} else if (action == "save"){
+				SQLoader.saveItems(items);
+			}
+			return success;
+		}
 	}
 }

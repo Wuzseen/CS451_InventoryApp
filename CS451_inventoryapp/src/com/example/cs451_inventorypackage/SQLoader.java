@@ -1,7 +1,11 @@
 package com.example.cs451_inventorypackage;
 
 import java.util.ArrayList;
+
+import android.util.Log;
+
 import com.example.cs451_inventorypackage.InventoryManager;
+
 import org.apache.http.NameValuePair; 
 import org.apache.http.message.BasicNameValuePair;
 
@@ -12,15 +16,19 @@ public class SQLoader {
 		if(handler == null) {
 			handler = new SQLHandler();
 		}
-    	String html = handler.makePost("http://www.timjbday.com/classtuff/findItem.php", null);
-    	String[] allItems = html.split("<br>");
+    	String html = handler.makePost("http://www.timjbday.com/classtuff/findItem.php", new ArrayList<NameValuePair>());
+    	String[] allItems = html.replace("\n", "").split("<br>");
     	InventoryManager im = InventoryManager.Instance();
     	ArrayList<InventoryItem> ret = new ArrayList<InventoryItem>();
     	for(String itemString : allItems) {
     		String[] components = itemString.split(",");
     		InventoryItem i = new InventoryItem();
     		im.addItem(i);
-    		i.setId(Integer.parseInt(components[0]));
+    		Log.i("the ID", components[0]);
+    		String s = components[0].trim();
+    		Log.i("String length is ", Integer.toString(s.length()));
+    		int theInt = Integer.parseInt(s);
+    		i.setId(theInt);
     		i.setName(components[1]);
     		i.setCount(Integer.parseInt(components[2]));
     		i.setBarcode(components[3]);
@@ -50,8 +58,8 @@ public class SQLoader {
 		if(handler == null) {
 			handler = new SQLHandler();
 		}
-    	String html = handler.makePost("http://www.timjbday.com/classtuff/findItem.php", null);
-    	String[] allItems = html.split("<br>");
+    	String html = handler.makePost("http://www.timjbday.com/classtuff/findLoc.php", new ArrayList<NameValuePair>());
+    	String[] allItems = html.replace("\n", "").split("<br>");
     	ArrayList<Location> ret = new ArrayList<Location>();
     	InventoryManager im = InventoryManager.Instance();
     	for(String itemString : allItems) {

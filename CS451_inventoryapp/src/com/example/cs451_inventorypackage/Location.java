@@ -54,6 +54,9 @@ public class Location implements ISearchable<Location> {
 	}
 	
 	public void LoadFromSubIDs() {
+		if (subIds == null){
+			return;
+		}
 		InventoryManager im = InventoryManager.Instance();
 		for(Integer i : subIds) {
 			this.addSubLocation(im.locationLookup(i));

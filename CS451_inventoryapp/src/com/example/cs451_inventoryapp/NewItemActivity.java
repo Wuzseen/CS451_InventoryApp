@@ -90,19 +90,19 @@ public class NewItemActivity extends ActionBarActivity
 		saveBut.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				Toast.makeText(NewItemActivity.this, "Saved", Toast.LENGTH_SHORT).show();
 				String b = barcode.getText().toString();
-				ibarcode = new Barcode(b);
 				String sku = SKU.getText().toString();
 				String name = dName.getText().toString();
 				String loc = location.getText().toString();
 				int inventory = Integer.parseInt(stock.getText().toString());
-				Location ilocation = new Location(loc);
 				// Save new item to the database then close activity
-				mitem.setBarcode(ibarcode);
+				mitem.setBarcode(b);
 				mitem.setName(name);
 				mitem.setSKU(sku);
-				mitem.setLoc(ilocation);
+				mitem.setLoc(loc);
 				mitem.setCount(inventory);
+				
 				Intent passItemBackIntent = new Intent(NewItemActivity.this, MainActivity.class);
 				passItemBackIntent.putExtra("item", mitem);
 				setResult(RESULT_OK, passItemBackIntent);

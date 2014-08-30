@@ -45,8 +45,8 @@ public class InventoryItem implements Serializable, ISerialize {
 	public String getBarcode() {
 		return this.barcode;
 	}
-	public void setBarcode(String bc) {
-		this.barcode = bc;
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
 	}
 	
 	private String name;
@@ -65,11 +65,11 @@ public class InventoryItem implements Serializable, ISerialize {
 		this.sku = sku;
 	}
 	
-	private Location location;
-	public Location getLoc(){
+	private String location;
+	public String getLoc(){
 		return location;
 	}
-	public void setLoc(Location loc){
+	public void setLoc(String loc){
 		this.location = loc;
 	}
 	
