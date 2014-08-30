@@ -4,14 +4,12 @@ package com.example.cs451_inventorypackage;
 // http://webdesignergeeks.com/mobile/android/android-login-authentication-with-remote-db/
 
 import java.io.*;
-import java.net.URI;
 import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;  
 import org.apache.http.client.HttpClient;  
-import org.apache.http.client.entity.UrlEncodedFormEntity;  
-import org.apache.http.client.methods.HttpGet;  
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;  
 import org.apache.http.conn.params.ConnManagerParams;  
 import org.apache.http.impl.client.DefaultHttpClient;  
