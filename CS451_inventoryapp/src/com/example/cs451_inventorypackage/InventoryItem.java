@@ -36,13 +36,16 @@ public class InventoryItem implements Serializable, ISerialize {
 	}
 	public void setId(int val) {
 		id = val;
+		if(val > idCount) {
+			idCount = val + 1;
+		}
 	}
 	
-	private Barcode barcode;
-	public Barcode getBarcode() {
+	private String barcode;
+	public String getBarcode() {
 		return this.barcode;
 	}
-	public void setBarcode(Barcode bc) {
+	public void setBarcode(String bc) {
 		this.barcode = bc;
 	}
 	
