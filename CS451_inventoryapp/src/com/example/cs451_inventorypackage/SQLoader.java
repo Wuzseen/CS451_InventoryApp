@@ -54,6 +54,24 @@ public class SQLoader {
 		}
 	}
 	
+	public static void deleteItem(Integer id) {
+		if(handler == null) {
+			handler = new SQLHandler();
+		}
+		String address = "http://www.timjbday.com/classtuff/rmItem.php";
+		ArrayList<NameValuePair> args = new ArrayList<NameValuePair>();
+		args.add(new BasicNameValuePair("ID",id.toString()));
+	}
+	
+	public static void deleteLocation(Integer id) {
+		if(handler == null) {
+			handler = new SQLHandler();
+		}
+		String address = "http://www.timjbday.com/classtuff/rmLoc.php";
+		ArrayList<NameValuePair> args = new ArrayList<NameValuePair>();
+		args.add(new BasicNameValuePair("ID",id.toString()));
+	}
+	
 	public static ArrayList<Location> allLocations() {
 		if(handler == null) {
 			handler = new SQLHandler();

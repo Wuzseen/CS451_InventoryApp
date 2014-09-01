@@ -1241,19 +1241,17 @@ containing a value of this type.
         public static final int activity_main_copy=0x7f03001b;
         public static final int activity_new_item=0x7f03001c;
         public static final int activity_new_location=0x7f03001d;
-        public static final int activity_splash_screen=0x7f03001e;
-        public static final int inventory_fragment=0x7f03001f;
-        public static final int newedit_fragment=0x7f030020;
-        public static final int search_results_list_group=0x7f030021;
-        public static final int search_results_list_item=0x7f030022;
-        public static final int support_simple_spinner_dropdown_item=0x7f030023;
+        public static final int inventory_fragment=0x7f03001e;
+        public static final int newedit_fragment=0x7f03001f;
+        public static final int search_results_list_group=0x7f030020;
+        public static final int search_results_list_item=0x7f030021;
+        public static final int support_simple_spinner_dropdown_item=0x7f030022;
     }
     public static final class menu {
         public static final int barcode_scanner=0x7f0d0000;
         public static final int location_details=0x7f0d0001;
         public static final int new_item=0x7f0d0002;
         public static final int new_location=0x7f0d0003;
-        public static final int splash_screen=0x7f0d0004;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

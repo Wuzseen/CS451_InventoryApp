@@ -31,4 +31,11 @@ public class SQLTest extends TestCase {
     	String control = "1\n";
     	Assert.assertEquals(control, res);
     }
+    
+    public void testLocFind() {
+    	ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+    	String res = handler.makePost("http://www.timjbday.com/classtuff/findItem.php", params);
+    	String control = "1\n";
+    	Assert.assertEquals(control, res);
+    }
 }
