@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 	/* TODO
 	 * Items need to be loaded first
 	 */
-	ImageButton searchBut;
+	Button searchBut;
 	ImageButton scanBut;
 	ImageButton itemBut;
 	ImageButton locationBut;
@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 	ExpandableListAdapter listAdpt;
 	ExpandableListView elistView;
 	List<String> listDataHeader;
-	HashMap<String, List<String>> listDataChild;
+	HashMap<String, List<?>> listDataChild;
 	ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
 	InventoryManager iManager;
 	
@@ -70,21 +70,23 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
         
         iManager = InventoryManager.Instance();
         allLoc = iManager.getAllLoc();
+        /*
         for(int i = 0; i<allLoc.size(); i++){
         	Log.i("Location found", allLoc.get(i).getName());
-        }
+        }*/
         
         allItems = iManager.getAllItems();
+        /*
         for(int j = 0; j<allItems.size(); j++){
         	Log.i("Items found", allItems.get(j).getName());
-        }
+        } */
         
         searchBx = (EditText) findViewById(R.id.searchBx);
         scanBut = (ImageButton) findViewById(R.id.scanBut);
         itemBut = (ImageButton) findViewById(R.id.itemBut);
         locationBut = (ImageButton) findViewById(R.id.locationBut);
         searchSpin = (Spinner) findViewById(R.id.searchSpin);
-        searchBut = (ImageButton) findViewById(R.id.searchBut);
+        searchBut = (Button) findViewById(R.id.searchBut);
         elistView = (ExpandableListView) findViewById(R.id.searchRes);
         
         elistView.setOnChildClickListener(new OnChildClickListener(){
@@ -95,7 +97,10 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 					// Open the Item Activity ();
 					// pass a flag to edit.
 					Intent showItemIntent = new Intent(MainActivity.this, NewItemActivity.class);
-					showItemIntent.putExtra("flag", "edit item");
+					showItemIntent.putExtra("action", "edit");
+					String clicked = parent.getItemAtPosition(childPosition).toString();
+					System.out.println("Clicked this " + clicked);
+					//showItemIntent.putExtra("item", value);
 					startActivity(showItemIntent);
 				} else {
 					// Open the Location Activity ();
@@ -122,6 +127,8 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 			@Override
 			public void onClick(View v) {
 				Intent newItemIntent = new Intent(MainActivity.this, NewItemActivity.class);
+				newItemIntent.putExtra("locations", allLoc);
+				newItemIntent.putExtra("action","new");
 				startActivityForResult(newItemIntent, NEW_EDIT_ITEM_REQUEST);
 			}
         });
@@ -151,7 +158,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 			public void onClick(View v) {
 				String entry = searchBx.getText().toString();
 				
-				performASearch();
+				performASearch(entry,searchType);
 				
 				listAdpt = new ExpandableListAdapter(MainActivity.this, listDataHeader, listDataChild);
 				 
@@ -161,24 +168,68 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 		});
     }
     
-    protected void performASearch() {
+    protected void performASearch(String query,String type) {
+    	FindResult<InventoryItem> resI = null;
+    	FindResult<Location> resL = null;
+    	FindResult<Location> resl = null;
+    	switch(type){
+    	case "barcode":
+    		resI = iManager.findByBarcode(query);
+    		break;
+    	case "name":
+    		resI = iManager.findByName(query);
+    		break;
+    	case "location":
+    		resL = iManager.findMatchingLocationByName(query);
+    		resl = iManager.findContainingLocationByName(query);
+    		break;
+    	case "SKU":
+    		resI = iManager.findBySKU(query);
+    		break;
+    	}
+    	
 		listDataHeader = new ArrayList<String>();
-		listDataChild = new HashMap<String, List<String>>();
+		listDataChild = new HashMap<String, List<?>>();
 		
 		// Adding child data
 		listDataHeader.add("Items");
 		listDataHeader.add("Location");
 		
 		// Add children
-		List<String> items = new ArrayList<String>();
-		items.add("Item 1");
-		items.add("Item 2");
-		items.add("Items 3");
+		List<InventoryItem> items = new ArrayList<InventoryItem>();
+		Boolean success = resI.successful();
+		if(success == true){
+			for(InventoryItem item : resI){
+				//items.add(item.getName());
+				items.add(item);
+			}
+		} else {
+			Toast.makeText(MainActivity.this, "Sorry item doesn't exist!", Toast.LENGTH_SHORT).show();
+			System.out.println("No items found");
+		}
 		
-		List<String> locations = new ArrayList<String>();
-		locations.add("Location 1");
-		locations.add("Location 2");
-		locations.add("Location 3");
+		List<Location> locations = new ArrayList<Location>();
+		success = resL.successful();
+		if(success == true){
+			for(Location loc : resL){
+				//locations.add(loc.getName());
+				locations.add(loc);
+			}
+		} else {
+			Toast.makeText(MainActivity.this, "Sorry Location doesn't exist!", Toast.LENGTH_SHORT).show();
+			Log.i("Location search", "None found");
+		}
+		
+		success = resl.successful();
+		if(success == true){
+			for(Location loc : resl){
+				//locations.add(loc.getName());
+				locations.add(loc);
+			}
+		} else {
+			Toast.makeText(MainActivity.this, "Sorry Location doesn't exist!", Toast.LENGTH_SHORT).show();
+			Log.i("Location search", "None found");
+		}
 		
 		// Map the children to their groups
 		listDataChild.put(listDataHeader.get(0), items);

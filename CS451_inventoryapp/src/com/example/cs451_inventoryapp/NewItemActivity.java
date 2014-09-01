@@ -15,8 +15,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 /**
@@ -25,15 +29,17 @@ import android.widget.Toast;
  * specific item.
  */
 public class NewItemActivity extends ActionBarActivity 
-	implements onSubmitListener{
-	Button scanBut;
+	implements onSubmitListener, OnItemSelectedListener{
+	ImageButton scanBut;
 	Button saveBut;
 	Button inventoryBut;
+	Button deleteBut;
 	EditText barcode;
 	EditText SKU;
 	EditText dName;
-	EditText location;
+	Spinner locSpnr;
 	TextView stock;
+	String location;
 
 	static final int SCAN_BARCODE_REQUEST = 1; // request code to send to BarcodeScannerActivity
 	static final int RESULT_OK = 0;
@@ -47,23 +53,30 @@ public class NewItemActivity extends ActionBarActivity
 	InventoryItem mitem = new InventoryItem();
 	/* Something to manage the inventory */
 	InventoryManager imanager;
-	
+	String action;
+	ArrayList<Location> locs = new ArrayList<Location>();
+	InventoryItem item = new InventoryItem();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		/* TODO imanager.instance */
 		setContentView(R.layout.activity_new_item);
-		scanBut = (Button) findViewById(R.id.scan);
+		action = getIntent().getExtras().getString("action");
+		scanBut = (ImageButton) findViewById(R.id.scan);
 		saveBut = (Button) findViewById(R.id.saveBut);
 		barcode = (EditText) findViewById(R.id.barcodeEntry);
 		SKU = (EditText) findViewById(R.id.skuEntry);
 		dName = (EditText) findViewById(R.id.dnameEntry);
-		location = (EditText) findViewById(R.id.locationEntry);
+		locSpnr = (Spinner) findViewById(R.id.locationEntry);
 		stock = (TextView) findViewById(R.id.stock);
 		inventoryBut = (Button) findViewById(R.id.updateInventoryBut);
+		deleteBut = (Button) findViewById(R.id.deleteBut);
 		
 		/* Check the extras passed to determine whether a new or an edit item 
 		is being done */
+		if(action=="edit"){
+			item = (InventoryItem) getIntent().getExtras().get("item");
+		}
 		
 		stock.setText("0");
 		
@@ -87,6 +100,8 @@ public class NewItemActivity extends ActionBarActivity
 			}
 		});
 		
+		locSpnr.setOnItemSelectedListener(this);
+		
 		saveBut.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -94,19 +109,25 @@ public class NewItemActivity extends ActionBarActivity
 				String b = barcode.getText().toString();
 				String sku = SKU.getText().toString();
 				String name = dName.getText().toString();
-				String loc = location.getText().toString();
 				int inventory = Integer.parseInt(stock.getText().toString());
 				// Save new item to the database then close activity
 				mitem.setBarcode(b);
 				mitem.setName(name);
 				mitem.setSKU(sku);
-				mitem.setLoc(loc);
+				mitem.setLoc(location);
 				mitem.setCount(inventory);
 				
 				Intent passItemBackIntent = new Intent(NewItemActivity.this, MainActivity.class);
 				passItemBackIntent.putExtra("item", mitem);
 				setResult(RESULT_OK, passItemBackIntent);
 				finish();
+			}
+		});
+		
+		deleteBut.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
 			}
 		});
 	}
@@ -133,6 +154,20 @@ public class NewItemActivity extends ActionBarActivity
 	@Override
 	public void setOnSubmitListener(String arg) {
 		stock.setText(arg);
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
+			long id) {
+		// Get the item that was selected. 
+		String loc = parent.getItemAtPosition(position).toString();
+		location = loc;
+		Toast.makeText(NewItemActivity.this, "Picked " + loc, Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		location = "";
 	}
 	
 }

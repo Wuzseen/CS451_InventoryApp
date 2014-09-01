@@ -72,15 +72,18 @@
     	  	
     </LinearLayout>
     
-    <ImageButton 
+    <Button 
        	android:id="@+id/searchBut"
        	android:layout_marginTop="8dp"
        	android:layout_marginBottom="8dp"
-       	android:layout_width="80dp"
-       	android:layout_height="80dp"
-       	android:layout_gravity="right"
-       	android:background="@drawable/search"
-       	android:contentDescription="@string/button_search"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:layout_gravity="center_horizontal"
+       	android:drawableLeft="@drawable/search"
+       	android:text="@string/button_search"
+       	android:background="@drawable/button"
+       	android:padding="16dp"
+       	android:textColor="#FFFFFF"
        	android:textSize="16sp"/>
     
     <ExpandableListView

@@ -95,6 +95,15 @@ public class InventoryManager {
 		return ret;
 	}
 	
+	public FindResult<InventoryItem> findBySKU(String sku) {
+		// Searches through locations
+		FindResult<InventoryItem> ret = new FindResult<InventoryItem>();
+		for(Location l : locationListing) {
+			ret.addItems(l.findItemsWithSKU(sku));
+		}
+		return ret;
+	}
+	
 	public ArrayList<Location> getAllLoc(){
 		return allLocations;
 	}

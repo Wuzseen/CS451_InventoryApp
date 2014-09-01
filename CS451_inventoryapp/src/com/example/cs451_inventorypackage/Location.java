@@ -254,4 +254,10 @@ public class Location implements ISearchable<Location> {
 		assembleItemList(ret, barcode);
 		return ret;
 	}
+	
+	public ArrayList<InventoryItem> findItemsWithSKU(String sku) {
+		ArrayList<InventoryItem> ret = new ArrayList<InventoryItem>();
+		assembleItemList(ret, sku);
+		return null;
+	}
 }
