@@ -14,28 +14,31 @@
         android:layout_marginBottom="16dp"
         android:orientation="horizontal" >
         
-        <Button 
+        <ImageButton 
        		android:id="@+id/scanBut"
         	android:layout_width="0dp"
-        	android:layout_height="80dp"
+        	android:layout_height="wrap_content"
         	android:layout_weight="1"
-        	android:text="@string/button_scan" 
-        	android:textSize="16sp"/>
+        	android:contentDescription="@string/button_scan" 
+        	android:textSize="16sp"
+        	android:background="@drawable/barcode"/>
         
-        <Button 
+        <ImageButton 
        		android:id="@+id/itemBut"
         	android:layout_width="0dp"
-        	android:layout_height="80dp"
+        	android:layout_height="wrap_content"
         	android:layout_weight="1"
-        	android:text="@string/button_item" 
+        	android:contentDescription="@string/button_item"
+        	android:background="@drawable/newitem" 
         	android:textSize="16sp"/>
         
-        <Button 
+        <ImageButton 
        		android:id="@+id/locationBut"
         	android:layout_width="0dp"
-        	android:layout_height="80dp"
+        	android:layout_height="wrap_content"
         	android:layout_weight="1"
-        	android:text="@string/button_location" 
+        	android:contentDescription="@string/button_location"
+        	android:background="@drawable/newlocation" 
         	android:textSize="16sp"/>
   
     </LinearLayout>
@@ -69,14 +72,15 @@
     	  	
     </LinearLayout>
     
-    <Button 
+    <ImageButton 
        	android:id="@+id/searchBut"
        	android:layout_marginTop="8dp"
        	android:layout_marginBottom="8dp"
-       	android:layout_width="wrap_content"
-       	android:layout_height="wrap_content"
-       	android:layout_gravity="center_horizontal"
-       	android:text="@string/button_search" 
+       	android:layout_width="80dp"
+       	android:layout_height="80dp"
+       	android:layout_gravity="right"
+       	android:background="@drawable/search"
+       	android:contentDescription="@string/button_search"
        	android:textSize="16sp"/>
     
     <ExpandableListView

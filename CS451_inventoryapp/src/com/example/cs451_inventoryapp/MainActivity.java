@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 /**
@@ -33,10 +34,10 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 	/* TODO
 	 * Items need to be loaded first
 	 */
-	Button searchBut;
-	Button scanBut;
-	Button itemBut;
-	Button locationBut;
+	ImageButton searchBut;
+	ImageButton scanBut;
+	ImageButton itemBut;
+	ImageButton locationBut;
 	Spinner searchSpin;
 	String searchType;
 	EditText searchBx;
@@ -79,11 +80,11 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
         }
         
         searchBx = (EditText) findViewById(R.id.searchBx);
-        scanBut = (Button) findViewById(R.id.scanBut);
-        itemBut = (Button) findViewById(R.id.itemBut);
-        locationBut = (Button) findViewById(R.id.locationBut);
+        scanBut = (ImageButton) findViewById(R.id.scanBut);
+        itemBut = (ImageButton) findViewById(R.id.itemBut);
+        locationBut = (ImageButton) findViewById(R.id.locationBut);
         searchSpin = (Spinner) findViewById(R.id.searchSpin);
-        searchBut = (Button) findViewById(R.id.searchBut);
+        searchBut = (ImageButton) findViewById(R.id.searchBut);
         elistView = (ExpandableListView) findViewById(R.id.searchRes);
         
         elistView.setOnChildClickListener(new OnChildClickListener(){
