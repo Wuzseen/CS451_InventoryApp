@@ -61,6 +61,7 @@ public class SQLoader {
 		String address = "http://www.timjbday.com/classtuff/rmItem.php";
 		ArrayList<NameValuePair> args = new ArrayList<NameValuePair>();
 		args.add(new BasicNameValuePair("ID",id.toString()));
+		handler.makePost(address, args);
 	}
 	
 	public static void deleteLocation(Integer id) {
@@ -70,6 +71,7 @@ public class SQLoader {
 		String address = "http://www.timjbday.com/classtuff/rmLoc.php";
 		ArrayList<NameValuePair> args = new ArrayList<NameValuePair>();
 		args.add(new BasicNameValuePair("ID",id.toString()));
+		handler.makePost(address, args);
 	}
 	
 	public static ArrayList<Location> allLocations() {
