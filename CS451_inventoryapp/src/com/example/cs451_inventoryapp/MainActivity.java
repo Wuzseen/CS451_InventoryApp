@@ -107,7 +107,8 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 					//System.out.println("Clicked this " + clicked);
 					showItemIntent.putExtra("item", item);
 					showItemIntent.putExtra("locations",allLoc);
-					startActivity(showItemIntent);
+					startActivityForResult(showItemIntent, NEW_EDIT_ITEM_REQUEST);
+//					startActivityForResult(showItemIntent);
 				} else {
 					// Open the Location Activity ();
 					// pass a flag to edit
@@ -272,8 +273,6 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     				return;
     			} else {
     				String barcode = data.getStringExtra("barcode");
-    				// TODO pass the barcode to the search function 
-    				// and populate the list.
     			}
     			
     		}
@@ -285,12 +284,12 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     				return;
     			} else {
     				String action = data.getExtras().getString("action").toString();
-    				if(action=="s"){
+    				if(action.equals("s")){
     					InventoryItem item = (InventoryItem) data.getExtras().get("item"); 
     					items.add(item);
     					TimDBTask tIm_save = new TimDBTask();
     					tIm_save.execute("save");
-    				} else if(action=="d"){
+    				} else if(action.equals("d")){
     					InventoryItem item = (InventoryItem) data.getExtras().get("item");
     					String id = item.getId().toString();
     					TimDBTask tIm_del = new TimDBTask();
@@ -354,14 +353,16 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 		protected String doInBackground(String... params) {
 			String action = params[0];
 			String success = "done";
-			if (action == "load"){
+			if (action.equals("load")){
 				ArrayList<InventoryItem> items_arr = SQLoader.allItems();
 				ArrayList<Location> loc_arr = SQLoader.allLocations();
-			} else if (action == "save"){
+			} else if (action.equals("save")){
 				SQLoader.saveItems(items);
-			} else if(action =="savel"){
 				SQLoader.saveLocation(allLoc);
-			} else if(action == "del"){
+			} else if(action.equals("savel")){
+				SQLoader.saveLocation(allLoc);
+				SQLoader.saveItems(items);
+			} else if(action.equals("del")){
 				SQLoader.deleteItem(Integer.parseInt(params[1]));
 			}
 			return success;

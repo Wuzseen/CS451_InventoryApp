@@ -37,6 +37,31 @@ public class InventoryManager {
 		return instance;
 	}
 	
+	public void updateLocation(Location l) {
+		for(Location loc : allLocations) {
+			if(loc.getId().equals(l.getId())) {
+				loc.setName(l.getName());
+				loc.setBarcode(l.getBarcode());
+				loc.setMaxSize(l.getMaxSize());
+				loc.setItems(l.getItemList());
+			}
+		}
+		SQLoader.saveLocation(allLocations);
+	}
+	
+	public void updateItem(InventoryItem l) {
+		for(InventoryItem inv : allItems) {
+			if(inv.getId().equals(l.getId())) {
+				inv.setName(l.getName());
+				inv.setBarcode(l.getBarcode());
+				inv.setCount(l.getCount());
+				inv.setLoc(l.getLoc());
+				inv.setSKU(l.getSKU());
+			}
+		}
+		SQLoader.saveItems(allItems);//(allLocations);
+	}
+	
 	public InventoryManager() {
 		instance = this;
 		this.locationListing = new ArrayList<Location>();

@@ -53,8 +53,6 @@ public class NewItemActivity extends ActionBarActivity
 	String iSKU;
 	String iname;
 	int istock;
-	/* The item itself */
-	InventoryItem mitem = new InventoryItem();
 	/* Something to manage the inventory */
 	InventoryManager imanager;
 	String action;
@@ -130,17 +128,26 @@ public class NewItemActivity extends ActionBarActivity
 				String name = dName.getText().toString();
 				int inventory = Integer.parseInt(stock.getText().toString());
 				// Save new item to the database then close activity
-				mitem.setBarcode(b);
-				mitem.setName(name);
-				mitem.setSKU(sku);
-				mitem.sLoc(location);
-				mitem.setLoc(location.getName());
-				mitem.setCount(inventory);
+				if(item == null) {
+					item = new InventoryItem();
+				}
+				item.setBarcode(b);
+				item.setName(name);
+				item.setSKU(sku);
+				item.sLoc(location);
+				item.setLoc(location.getName());
+				item.setCount(inventory);
 				
 				Intent passItemBackIntent = new Intent(NewItemActivity.this, MainActivity.class);
-				passItemBackIntent.putExtra("item", mitem);
+				passItemBackIntent.putExtra("item", item);
 				passItemBackIntent.putExtra("action", "s");
-				setResult(RESULT_OK, passItemBackIntent);
+//				InventoryManager.Instance().updateItem(item);
+//				InventoryManager.Instance().updateLocation(location);
+				if(getParent() == null) {
+					setResult(RESULT_OK, passItemBackIntent);
+				} else {
+					getParent().setResult(RESULT_OK, passItemBackIntent);
+				}
 				finish();
 			}
 		});
@@ -149,7 +156,7 @@ public class NewItemActivity extends ActionBarActivity
 			@Override
 			public void onClick(View v) {
 				Intent passItemBackIntent = new Intent(NewItemActivity.this, MainActivity.class);
-				passItemBackIntent.putExtra("item", mitem);
+				passItemBackIntent.putExtra("item", item);
 				passItemBackIntent.putExtra("action", "d");
 				setResult(RESULT_OK, passItemBackIntent);
 				finish();

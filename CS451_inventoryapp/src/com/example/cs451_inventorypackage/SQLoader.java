@@ -97,6 +97,8 @@ public class SQLoader {
     				continue;
     			}
     			if(sublocations) {
+    				if(components[z].equals(""))
+    					continue;
     				i.addSubId(Integer.parseInt(components[z]));
     			} else {
     				i.addItem(im.itemLookup(Integer.parseInt(components[z])));

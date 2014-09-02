@@ -32,6 +32,9 @@ public class Location implements Serializable, ISearchable<Location> {
 	public ArrayList<InventoryItem> getItemList() {
 		return itemList;
 	}
+	public void setItems(ArrayList<InventoryItem> items) {
+		itemList = items;
+	}
 	public String itemSQLString() {
 		String ret = itemList.get(0).getId().toString();
 		for(int i = 1; i < itemList.size(); i++) {
@@ -71,6 +74,9 @@ public class Location implements Serializable, ISearchable<Location> {
 		return this.subLocations;
 	}
 	public String subLocationSQLString() {
+		if(subLocations.size() == 0) {
+			return "";
+		}
 		String ret = subLocations.get(0).getId().toString();
 		for(int i = 1; i < subLocations.size(); i++) {
 			ret += "," + subLocations.get(i).getId().toString();
