@@ -20,14 +20,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/location_hint"
-        android:layout_below="@id/locLabel"/>
+        android:layout_below="@id/locLabel"
+        android:maxLength="20"/>
+    
+    <CheckBox
+        android:id="@+id/chkBx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/locName"
+        android:layout_below="@+id/locName"
+        android:layout_marginTop="30dp"
+        android:text="Is sub-location?" />
     
     <Button
         android:id="@+id/saveLoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/button_save"/>
+        android:text="@string/button_save"
+        android:layout_margin="8dp"
+	   	android:background="@drawable/button"
+       	android:padding="16dp"
+       	android:textColor="#FFFFFF"
+       	android:textSize="16sp"/>
     
+    <Button
+        android:id="@+id/deleteLoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/saveLoc"
+        android:text="@string/button_delete"
+        android:layout_margin="8dp"
+	    android:background="@drawable/button"
+       	android:padding="16dp"
+       	android:textColor="#FFFFFF"
+       	android:textSize="16sp"/>
+
 </RelativeLayout>
