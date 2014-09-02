@@ -3,6 +3,9 @@ package com.example.cs451_inventoryapp;
 import java.util.HashMap;
 import java.util.List;
 
+import com.example.cs451_inventorypackage.InventoryItem;
+import com.example.cs451_inventorypackage.Location;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -19,9 +22,9 @@ import android.widget.TextView;
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	private Context _context;
 	private List<String> _listDataHeader;
-	private HashMap<String, List<String>> _listDataChild;
+	private HashMap<String, List<?>> _listDataChild;
 	
-	public ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String,List<String>> listChildData){
+	public ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String,List<?>> listChildData){
 		this._context = context;
 		this._listDataHeader = listDataHeader;
 		this._listDataChild = listChildData;
@@ -84,7 +87,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getChildView(int groupPosition, int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
-		 final String childText = (String) getChild(groupPosition, childPosition);
+			String childText = null;
+			if(groupPosition == 0){
+				InventoryItem item = (InventoryItem) getChild(groupPosition,childPosition);
+				childText = item.getName();//(String) getChild(groupPosition, childPosition);
+			}
+			if(groupPosition == 1){
+				Location loc = (Location) getChild(groupPosition,childPosition);
+				childText = loc.getName();
+			}
 		 
 	        if (convertView == null) {
 	            LayoutInflater infalInflater = (LayoutInflater) this._context

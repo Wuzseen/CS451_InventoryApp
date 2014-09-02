@@ -134,7 +134,6 @@ public class NewItemActivity extends ActionBarActivity
 				item.setBarcode(b);
 				item.setName(name);
 				item.setSKU(sku);
-				item.sLoc(location);
 				item.setLoc(location.getName());
 				item.setCount(inventory);
 				

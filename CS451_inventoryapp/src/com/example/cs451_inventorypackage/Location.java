@@ -1,8 +1,14 @@
 package com.example.cs451_inventorypackage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Location implements ISearchable<Location> {
+public class Location implements Serializable, ISearchable<Location> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static Integer idCount = 1;
 
 	private Integer id;

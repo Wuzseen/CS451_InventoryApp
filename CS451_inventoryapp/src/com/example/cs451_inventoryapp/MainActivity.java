@@ -189,7 +189,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     		//resL = iManager.findMatchingLocationByName(query);
     		resl = iManager.findContainingLocationByName(query);
     	} else if(type.equals("SKU")) {
-    		resI = iManager.findBySKU(query);
+    		resI = iManager.findByName(query);
     	}
     	
 		listDataHeader = new ArrayList<String>();
