@@ -114,7 +114,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 					Location loc = (Location) listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
 					System.out.println("Clicked on location with name " + loc.getName());
 					Intent showLocationIntent = new Intent(MainActivity.this, LocationDetailsActivity.class);
-					showLocationIntent.putExtra("action", "edit location");
+					showLocationIntent.putExtra("location", loc);
 					startActivity(showLocationIntent);
 				}
 				return false;
@@ -177,24 +177,19 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     }
     
     protected void performASearch(String query,String type) {
-    	/*FindResult<InventoryItem> resI = null;
+    	FindResult<InventoryItem> resI = null;
     	FindResult<Location> resL = null;
     	FindResult<Location> resl = null;
-    	switch(type){
-    	case "barcode":
+    	if(type.equals("barcode")) {
     		resI = iManager.findByBarcode(query);
-    		break;
-    	case "name":
+    	} else if(type.equals("name")) {
     		resI = iManager.findByName(query);
-    		break;
-    	case "location":
-    		resL = iManager.findMatchingLocationByName(query);
+    	} else if(type.equals("location")) {
+    		//resL = iManager.findMatchingLocationByName(query);
     		resl = iManager.findContainingLocationByName(query);
-    		break;
-    	case "SKU":
+    	} else if(type.equals("SKU")) {
     		resI = iManager.findBySKU(query);
-    		break;
-    	}*/
+    	}
     	
 		listDataHeader = new ArrayList<String>();
 		listDataChild = new HashMap<String, List<?>>();
@@ -205,58 +200,63 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 		
 		// Add children
 		List<InventoryItem> items = new ArrayList<InventoryItem>();
-		InventoryItem dummy = new InventoryItem();
-		dummy.setName("Dummy");
-		dummy.setLoc("Basement");
-		dummy.setBarcode("12345467890");
-		dummy.setSKU("A dummy item");
-		dummy.setCount(12);
-		items.add(dummy);
-		InventoryItem dummy2 = new InventoryItem();
-		dummy2.setName("Dummy2");
-		dummy2.setLoc("Basement");
-		dummy2.setBarcode("12345467891");
-		dummy2.setSKU("Another dummy item");
-		dummy.setCount(3);
-		items.add(dummy2);
-		/*Boolean success = resI.successful();
-		if(success == true){
-			for(InventoryItem item : resI){
-				//items.add(item.getName());
-				items.add(item);
-			}
-		} else {
-			Toast.makeText(MainActivity.this, "Sorry item doesn't exist!", Toast.LENGTH_SHORT).show();
-			System.out.println("No items found");
-		}*/
-		
-		List<Location> locations = new ArrayList<Location>();
-		Location l_dummy  = new Location();
-		l_dummy.contains(dummy);
-		l_dummy.setName("Basement");
-		locations.add(l_dummy);
-		/*success = resL.successful();
-		if(success == true){
-			for(Location loc : resL){
-				//locations.add(loc.getName());
-				locations.add(loc);
-			}
-		} else {
-			Toast.makeText(MainActivity.this, "Sorry Location doesn't exist!", Toast.LENGTH_SHORT).show();
-			Log.i("Location search", "None found");
+//		InventoryItem dummy = new InventoryItem();
+//		dummy.setName("Dummy");
+//		dummy.setLoc("Basement");
+//		dummy.setBarcode("12345467890");
+//		dummy.setSKU("A dummy item");
+//		dummy.setCount(12);
+//		items.add(dummy);
+//		InventoryItem dummy2 = new InventoryItem();
+//		dummy2.setName("Dummy2");
+//		dummy2.setLoc("Basement");
+//		dummy2.setBarcode("12345467891");
+//		dummy2.setSKU("Another dummy item");
+//		dummy.setCount(3);
+//		items.add(dummy2);
+		boolean success = false;;
+		if(resI != null) {
+			success = resI.successful();
+			if(success == true){
+				for(InventoryItem item : resI){
+					//items.add(item.getName());
+					items.add(item);
+				}
+			} else {
+				Toast.makeText(MainActivity.this, "Sorry item doesn't exist!", Toast.LENGTH_SHORT).show();
+				System.out.println("No items found");
+			}	
 		}
-		
-		success = resl.successful();
-		if(success == true){
-			for(Location loc : resl){
-				//locations.add(loc.getName());
-				locations.add(loc);
+		List<Location> locations = new ArrayList<Location>();
+//		Location l_dummy  = new Location();
+//		l_dummy.contains(dummy);
+//		l_dummy.setName("Basement");
+//		locations.add(l_dummy);
+		//if(!(resL == null))
+		if(resL != null) {
+			success = resL.successful();
+			if(success == true){
+				for(Location loc : resL){
+					//locations.add(loc.getName());
+					locations.add(loc);
+				}
+			} else {
+				Toast.makeText(MainActivity.this, "Sorry Location doesn't exist!", Toast.LENGTH_SHORT).show();
+				Log.i("Location search", "None found");
 			}
-		} else {
-			Toast.makeText(MainActivity.this, "Sorry Location doesn't exist!", Toast.LENGTH_SHORT).show();
-			Log.i("Location search", "None found");
-		}*/
-		
+		}
+		if(resl != null) {
+			success = resl.successful();
+			if(success == true){
+				for(Location loc : resl){
+					//locations.add(loc.getName());
+					locations.add(loc);
+				}
+			} else {
+				Toast.makeText(MainActivity.this, "Sorry Location doesn't exist!", Toast.LENGTH_SHORT).show();
+				Log.i("Location search", "None found");
+			}
+		}
 		// Map the children to their groups
 		listDataChild.put(listDataHeader.get(0), items);
 		listDataChild.put(listDataHeader.get(1), locations);
@@ -355,10 +355,8 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 			String action = params[0];
 			String success = "done";
 			if (action == "load"){
-				ArrayList<InventoryItem> items_arr = new ArrayList<InventoryItem>();
-				items_arr = SQLoader.allItems();
-				ArrayList<Location> loc_arr = new ArrayList<Location>();
-				loc_arr = SQLoader.allLocations();
+				ArrayList<InventoryItem> items_arr = SQLoader.allItems();
+				ArrayList<Location> loc_arr = SQLoader.allLocations();
 			} else if (action == "save"){
 				SQLoader.saveItems(items);
 			} else if(action =="savel"){

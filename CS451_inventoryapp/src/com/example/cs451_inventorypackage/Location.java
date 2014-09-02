@@ -57,7 +57,7 @@ public class Location implements Serializable, ISearchable<Location> {
 	}
 	
 	public void LoadFromSubIDs() {
-		if (subIds == null){
+		if (subIds == null || subIds.get(0) == -1){
 			return;
 		}
 		InventoryManager im = InventoryManager.Instance();
@@ -82,7 +82,7 @@ public class Location implements Serializable, ISearchable<Location> {
 	
 	public void addSubLocation(Location l) {
 		this.subLocations.add(l);
-		l.isRoot = false;
+		this.isRoot = false;
 	}
 	public boolean removeSubLocation(int index) {
 		return this.subLocations.remove(index) != null;
