@@ -1,57 +1,37 @@
 package com.example.cs451_inventoryapp;
 
-import java.util.ArrayList;
-
-import com.example.cs451_inventorypackage.InventoryItem;
-import com.example.cs451_inventorypackage.InventoryManager;
-import com.example.cs451_inventorypackage.Location;
-
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.app.ListActivity;
-import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-
+import android.view.Menu;
+import android.view.MenuItem;
 /**
  * This activity shows a user the list of all the 
  * items located in the chosen location
  */
-public class LocationDetailsActivity extends ListActivity {
-	Location location;
-	TextView lhdr;
-	ArrayList<InventoryItem> itemsAtLoc;
-	ListView ilist;
-	InventoryManager iManager;
+public class LocationDetailsActivity extends ActionBarActivity {
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location_details);
-		location = (Location) getIntent().getExtras().get("location");
-		lhdr = (TextView) findViewById(R.id.locHdr);
-		lhdr.setText(location.getName());
-		ilist = getListView();
-		
-		itemsAtLoc = location.getItemList();
-		
-		LocDetListAdpt adapter = new LocDetListAdpt(
-				LocationDetailsActivity.this, 
-				R.layout.location_list_item,
-				itemsAtLoc);
-		
-		ilist.setAdapter(adapter);
-		ilist.setOnItemClickListener(new OnItemClickListener(){
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				InventoryItem item = itemsAtLoc.get(position);
-				Intent showItemDetails = new Intent(LocationDetailsActivity.this, NewItemActivity.class);
-				showItemDetails.putExtra("item", item);
-				showItemDetails.putExtra("action", "edit");
-			}
-		});
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.location_details, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }

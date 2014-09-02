@@ -14,31 +14,28 @@
         android:layout_marginBottom="16dp"
         android:orientation="horizontal" >
         
-        <ImageButton 
+        <Button 
        		android:id="@+id/scanBut"
         	android:layout_width="0dp"
-        	android:layout_height="wrap_content"
+        	android:layout_height="80dp"
         	android:layout_weight="1"
-        	android:contentDescription="@string/button_scan" 
-        	android:textSize="16sp"
-        	android:background="@drawable/barcode"/>
-        
-        <ImageButton 
-       		android:id="@+id/itemBut"
-        	android:layout_width="0dp"
-        	android:layout_height="wrap_content"
-        	android:layout_weight="1"
-        	android:contentDescription="@string/button_item"
-        	android:background="@drawable/newitem" 
+        	android:text="@string/button_scan" 
         	android:textSize="16sp"/>
         
-        <ImageButton 
+        <Button 
+       		android:id="@+id/itemBut"
+        	android:layout_width="0dp"
+        	android:layout_height="80dp"
+        	android:layout_weight="1"
+        	android:text="@string/button_item" 
+        	android:textSize="16sp"/>
+        
+        <Button 
        		android:id="@+id/locationBut"
         	android:layout_width="0dp"
-        	android:layout_height="wrap_content"
+        	android:layout_height="80dp"
         	android:layout_weight="1"
-        	android:contentDescription="@string/button_location"
-        	android:background="@drawable/newlocation" 
+        	android:text="@string/button_location" 
         	android:textSize="16sp"/>
   
     </LinearLayout>
@@ -79,11 +76,7 @@
        	android:layout_width="wrap_content"
        	android:layout_height="wrap_content"
        	android:layout_gravity="center_horizontal"
-       	android:drawableLeft="@drawable/search"
-       	android:text="@string/button_search"
-       	android:background="@drawable/button"
-       	android:padding="16dp"
-       	android:textColor="#FFFFFF"
+       	android:text="@string/button_search" 
        	android:textSize="16sp"/>
     
     <ExpandableListView

@@ -90,20 +90,12 @@
         	android:id="@+id/ok"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:text="@string/okay"
-        	android:padding="4dp"
-	    	android:textColor="#FFFFFF"
-	    	android:background="#000000"
-	    	android:layout_margin="8dp"/>
+        	android:text="@string/okay"/>
     	<Button
         	android:id="@+id/cancel"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:text="@string/cancel"
-        	android:padding="4dp"
-	    	android:textColor="#FFFFFF"
-	    	android:background="#000000"
-	    	android:layout_margin="8dp"/>
+        	android:text="@string/cancel"/>
     </LinearLayout>
     
 </LinearLayout>

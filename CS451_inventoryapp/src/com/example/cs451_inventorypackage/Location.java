@@ -1,11 +1,8 @@
 package com.example.cs451_inventorypackage;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Location implements Serializable, ISearchable<Location> {
-	private static final long serialVersionUID = -5662738448891990022L;
-
+public class Location implements ISearchable<Location> {
 	private static Integer idCount = 1;
 
 	private Integer id;
@@ -60,7 +57,7 @@ public class Location implements Serializable, ISearchable<Location> {
 	}
 	
 	public void LoadFromSubIDs() {
-		if (subIds == null || subIds.get(0) == -1){
+		if (subIds == null){
 			return;
 		}
 		InventoryManager im = InventoryManager.Instance();
@@ -88,7 +85,7 @@ public class Location implements Serializable, ISearchable<Location> {
 	
 	public void addSubLocation(Location l) {
 		this.subLocations.add(l);
-		this.isRoot = false;
+		l.isRoot = false;
 	}
 	public boolean removeSubLocation(int index) {
 		return this.subLocations.remove(index) != null;
@@ -262,11 +259,5 @@ public class Location implements Serializable, ISearchable<Location> {
 		ArrayList<InventoryItem> ret = new ArrayList<InventoryItem>();
 		assembleItemList(ret, barcode);
 		return ret;
-	}
-	
-	public ArrayList<InventoryItem> findItemsWithSKU(String sku) {
-		ArrayList<InventoryItem> ret = new ArrayList<InventoryItem>();
-		assembleItemList(ret, sku);
-		return null;
 	}
 }

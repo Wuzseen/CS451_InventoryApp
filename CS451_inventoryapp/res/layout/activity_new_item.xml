@@ -23,14 +23,13 @@
         		android:layout_height="wrap_content"
         		android:layout_weight="2"
         		android:hint="@string/barcode_hint"/>
-   	 		<ImageButton 
+   	 		<Button 
    	 	    	android:id="@+id/scan"
    	 	    	android:layout_width="0dp"
-   	 	    	android:layout_height="100dp"
+   	 	    	android:layout_height="wrap_content"
    	 	    	android:layout_weight="1"
    	 	    	android:paddingLeft="8dp"
-   	 	    	android:contentDescription="@string/button_scan"
-   	 	    	android:background="@drawable/barcode"/>
+   	 	    	android:text="@string/button_scan"/>
     	</LinearLayout>
     	<!-- SKU entry box -->
     	<TextView
@@ -42,8 +41,7 @@
         	android:id="@+id/skuEntry"
         	android:layout_width="match_parent"
         	android:layout_height="wrap_content"
-        	android:hint="@string/sku_hint"
-        	android:maxLength="20"/>
+        	android:hint="@string/sku_hint"/>
     	<!-- Description/Name entry box -->
     	<TextView
         	android:layout_width="wrap_content"
@@ -54,24 +52,18 @@
         	android:id="@+id/dnameEntry"
         	android:layout_width="match_parent"
         	android:layout_height="wrap_content"
-        	android:hint="@string/desc_name_hint"
-        	android:maxLength="20"/>
+        	android:hint="@string/desc_name_hint"/>
     	<!-- Location -->
     	<TextView
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:text="@string/location_label"
         	android:padding="12dp"/>
-    	<!-- <EditText
+    	<EditText
         	android:id="@+id/locationEntry"
         	android:layout_width="match_parent"
         	android:layout_height="wrap_content"
-        	android:hint="@string/location_hint"
-        	android:maxLength="20"/> -->
-    	<Spinner
-            android:id="@+id/locationEntry" 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        	android:hint="@string/location_hint"/>
     	<TextView
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
@@ -83,8 +75,7 @@
     	    android:layout_width="wrap_content"
     	    android:textSize="20sp"
     	    android:layout_marginLeft="16dp"
-    	    android:textStyle="bold"
-    	    android:maxLength="20"/>
+    	    android:textStyle="bold"/>
 	</LinearLayout>
 	
 	<Button
@@ -93,32 +84,23 @@
 	    android:layout_height="wrap_content"
 	    android:text="@string/button_update"
 	    android:layout_alignParentBottom="true"
-	    android:layout_margin="6dp"
-	    android:padding="16dp"
-	    android:textColor="#FFFFFF"
-	    android:background="@drawable/button"/>  
+	    android:layout_margin="2dp"/>  
 	<Button
 	    android:id="@+id/saveBut"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:text="@string/button_save"
 	    android:layout_alignParentBottom="true"
-	    android:layout_margin="6dp"
-	    android:layout_toRightOf="@id/updateInventoryBut"
-	    android:padding="16dp"
-	    android:textColor="#FFFFFF"
-	    android:background="@drawable/button"/>  
+	    android:layout_margin="2dp"
+	    android:layout_toRightOf="@id/updateInventoryBut"/>  
 	<Button
 	    android:id="@+id/deleteBut"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:text="@string/button_delete"
 	    android:layout_alignParentBottom="true"
-	    android:layout_margin="6dp"
-	    android:layout_toRightOf="@id/saveBut"
-	    android:padding="16dp"
-	    android:textColor="#FFFFFF"
-	    android:background="@drawable/button"/>  
+	    android:layout_margin="2dp"
+	    android:layout_toRightOf="@id/saveBut"/>  
 </RelativeLayout>
 
 
