@@ -53,6 +53,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 	
 	static final int SCAN_BARCODE_REQUEST = 1; // request code to send to BarcodeScannerActivity
 	static final int NEW_EDIT_ITEM_REQUEST = 2; // request code to send to the NewItemActivity
+	static final int NEW_LOCATION_REQUEST = 3; // request code to sent to the NewLocationActivity
 	static final int RESULT_OK = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,16 +71,16 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
         
         iManager = InventoryManager.Instance();
         allLoc = iManager.getAllLoc();
-        /*
+        
         for(int i = 0; i<allLoc.size(); i++){
         	Log.i("Location found", allLoc.get(i).getName());
-        }*/
+        }
         
         allItems = iManager.getAllItems();
-        /*
+        
         for(int j = 0; j<allItems.size(); j++){
         	Log.i("Items found", allItems.get(j).getName());
-        } */
+        } 
         
         searchBx = (EditText) findViewById(R.id.searchBx);
         scanBut = (ImageButton) findViewById(R.id.scanBut);
@@ -96,17 +97,24 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 				if(groupPosition == 0){
 					// Open the Item Activity ();
 					// pass a flag to edit.
+					InventoryItem item = (InventoryItem) listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+		
+					//InventoryItem item = (InventoryItem) parent.getItemAtPosition(groupPosition).
+					System.out.println("Clicked on item with name " + item.getName());
 					Intent showItemIntent = new Intent(MainActivity.this, NewItemActivity.class);
 					showItemIntent.putExtra("action", "edit");
-					String clicked = parent.getItemAtPosition(childPosition).toString();
-					System.out.println("Clicked this " + clicked);
-					//showItemIntent.putExtra("item", value);
+					//String clicked = parent.getItemAtPosition(childPosition).toString();
+					//System.out.println("Clicked this " + clicked);
+					showItemIntent.putExtra("item", item);
+					showItemIntent.putExtra("locations",allLoc);
 					startActivity(showItemIntent);
 				} else {
 					// Open the Location Activity ();
 					// pass a flag to edit
+					Location loc = (Location) listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+					System.out.println("Clicked on location with name " + loc.getName());
 					Intent showLocationIntent = new Intent(MainActivity.this, LocationDetailsActivity.class);
-					showLocationIntent.putExtra("flag", "edit location");
+					showLocationIntent.putExtra("action", "edit location");
 					startActivity(showLocationIntent);
 				}
 				return false;
@@ -157,7 +165,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 			@Override
 			public void onClick(View v) {
 				String entry = searchBx.getText().toString();
-				
+				System.out.println("Searching for " + entry + "of type " + searchType);
 				performASearch(entry,searchType);
 				
 				listAdpt = new ExpandableListAdapter(MainActivity.this, listDataHeader, listDataChild);
@@ -169,7 +177,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     }
     
     protected void performASearch(String query,String type) {
-    	FindResult<InventoryItem> resI = null;
+    	/*FindResult<InventoryItem> resI = null;
     	FindResult<Location> resL = null;
     	FindResult<Location> resl = null;
     	switch(type){
@@ -186,7 +194,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     	case "SKU":
     		resI = iManager.findBySKU(query);
     		break;
-    	}
+    	}*/
     	
 		listDataHeader = new ArrayList<String>();
 		listDataChild = new HashMap<String, List<?>>();
@@ -197,7 +205,21 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 		
 		// Add children
 		List<InventoryItem> items = new ArrayList<InventoryItem>();
-		Boolean success = resI.successful();
+		InventoryItem dummy = new InventoryItem();
+		dummy.setName("Dummy");
+		dummy.setLoc("Basement");
+		dummy.setBarcode("12345467890");
+		dummy.setSKU("A dummy item");
+		dummy.setCount(12);
+		items.add(dummy);
+		InventoryItem dummy2 = new InventoryItem();
+		dummy2.setName("Dummy2");
+		dummy2.setLoc("Basement");
+		dummy2.setBarcode("12345467891");
+		dummy2.setSKU("Another dummy item");
+		dummy.setCount(3);
+		items.add(dummy2);
+		/*Boolean success = resI.successful();
 		if(success == true){
 			for(InventoryItem item : resI){
 				//items.add(item.getName());
@@ -206,10 +228,14 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 		} else {
 			Toast.makeText(MainActivity.this, "Sorry item doesn't exist!", Toast.LENGTH_SHORT).show();
 			System.out.println("No items found");
-		}
+		}*/
 		
 		List<Location> locations = new ArrayList<Location>();
-		success = resL.successful();
+		Location l_dummy  = new Location();
+		l_dummy.contains(dummy);
+		l_dummy.setName("Basement");
+		locations.add(l_dummy);
+		/*success = resL.successful();
 		if(success == true){
 			for(Location loc : resL){
 				//locations.add(loc.getName());
@@ -229,7 +255,7 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 		} else {
 			Toast.makeText(MainActivity.this, "Sorry Location doesn't exist!", Toast.LENGTH_SHORT).show();
 			Log.i("Location search", "None found");
-		}
+		}*/
 		
 		// Map the children to their groups
 		listDataChild.put(listDataHeader.get(0), items);
@@ -258,10 +284,30 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
     			if (data == null) {
     				return;
     			} else {
-    				InventoryItem item = (InventoryItem) data.getExtras().get("item"); 
-    				items.add(item);
+    				String action = data.getExtras().getString("action").toString();
+    				if(action=="s"){
+    					InventoryItem item = (InventoryItem) data.getExtras().get("item"); 
+    					items.add(item);
+    					TimDBTask tIm_save = new TimDBTask();
+    					tIm_save.execute("save");
+    				} else if(action=="d"){
+    					InventoryItem item = (InventoryItem) data.getExtras().get("item");
+    					String id = item.getId().toString();
+    					TimDBTask tIm_del = new TimDBTask();
+    					tIm_del.execute("del",id);
+    				}
+    				
+    			}
+    		} 
+    	} else if (requestcode == NEW_LOCATION_REQUEST){
+    		if (resultcode == RESULT_OK){
+    			if(data == null){
+    				return;
+    			} else {
+    				Location loc = (Location) data.getExtras().get("loc");
+    				allLoc.add(loc);
     				TimDBTask tIm_save = new TimDBTask();
-    				tIm_save.execute("save");
+    				tIm_save.execute("savel");
     			}
     		}
     	} else {
@@ -313,9 +359,12 @@ public class MainActivity extends ActionBarActivity implements OnItemSelectedLis
 				items_arr = SQLoader.allItems();
 				ArrayList<Location> loc_arr = new ArrayList<Location>();
 				loc_arr = SQLoader.allLocations();
-				
 			} else if (action == "save"){
 				SQLoader.saveItems(items);
+			} else if(action =="savel"){
+				SQLoader.saveLocation(allLoc);
+			} else if(action == "del"){
+				SQLoader.deleteItem(Integer.parseInt(params[1]));
 			}
 			return success;
 		}

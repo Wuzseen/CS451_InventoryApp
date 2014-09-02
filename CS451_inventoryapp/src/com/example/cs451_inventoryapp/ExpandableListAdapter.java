@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.example.cs451_inventorypackage.InventoryItem;
+import com.example.cs451_inventorypackage.Location;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -86,7 +87,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getChildView(int groupPosition, int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
-		 final String childText = (String) getChild(groupPosition, childPosition);
+			String childText = null;
+			if(groupPosition == 0){
+				InventoryItem item = (InventoryItem) getChild(groupPosition,childPosition);
+				childText = item.getName();//(String) getChild(groupPosition, childPosition);
+			}
+			if(groupPosition == 1){
+				Location loc = (Location) getChild(groupPosition,childPosition);
+				childText = loc.getName();
+			}
 		 
 	        if (convertView == null) {
 	            LayoutInflater infalInflater = (LayoutInflater) this._context

@@ -8,15 +8,19 @@ import com.example.cs451_inventorypackage.Barcode;
 import com.example.cs451_inventorypackage.InventoryItem;
 import com.example.cs451_inventorypackage.InventoryManager;
 import com.example.cs451_inventorypackage.Location;
-import com.example.cs451_inventorypackage.SQLoader;
 
 import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -39,7 +43,7 @@ public class NewItemActivity extends ActionBarActivity
 	EditText dName;
 	Spinner locSpnr;
 	TextView stock;
-	String location;
+	Location location;
 
 	static final int SCAN_BARCODE_REQUEST = 1; // request code to send to BarcodeScannerActivity
 	static final int RESULT_OK = 0;
@@ -56,12 +60,16 @@ public class NewItemActivity extends ActionBarActivity
 	String action;
 	ArrayList<Location> locs = new ArrayList<Location>();
 	InventoryItem item = new InventoryItem();
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		/* TODO imanager.instance */
 		setContentView(R.layout.activity_new_item);
-		action = getIntent().getExtras().getString("action");
+		this.action = getIntent().getExtras().getString("action");
+		this.item = (InventoryItem) getIntent().getExtras().get("item");
+		this.locs = (ArrayList<Location>) getIntent().getExtras().get("locations");
+		System.out.println("Action is " + action);
 		scanBut = (ImageButton) findViewById(R.id.scan);
 		saveBut = (Button) findViewById(R.id.saveBut);
 		barcode = (EditText) findViewById(R.id.barcodeEntry);
@@ -72,13 +80,24 @@ public class NewItemActivity extends ActionBarActivity
 		inventoryBut = (Button) findViewById(R.id.updateInventoryBut);
 		deleteBut = (Button) findViewById(R.id.deleteBut);
 		
+        LocSpinnerAdpt adapter = new LocSpinnerAdpt(NewItemActivity.this, R.layout.location_spinner,locs);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        locSpnr.setAdapter(adapter);
+
 		/* Check the extras passed to determine whether a new or an edit item 
 		is being done */
-		if(action=="edit"){
+		if(action.equalsIgnoreCase("edit")){
+			System.out.println("About to edit");
 			item = (InventoryItem) getIntent().getExtras().get("item");
+			System.out.println("Item had barcode " + item.getBarcode());
+			barcode.setText(item.getBarcode());
+			SKU.setText(item.getSKU());
+			dName.setText(item.getName());
+			// locSpnr.setSelection(locs.indexOf(item.getLoc()), true);
+			stock.setText(Integer.toString(item.getCount()));
+		} else {
+			stock.setText("0");
 		}
-		
-		stock.setText("0");
 		
 		scanBut.setOnClickListener(new OnClickListener(){
 			@Override
@@ -114,11 +133,13 @@ public class NewItemActivity extends ActionBarActivity
 				mitem.setBarcode(b);
 				mitem.setName(name);
 				mitem.setSKU(sku);
-				mitem.setLoc(location);
+				mitem.sLoc(location);
+				mitem.setLoc(location.getName());
 				mitem.setCount(inventory);
 				
 				Intent passItemBackIntent = new Intent(NewItemActivity.this, MainActivity.class);
 				passItemBackIntent.putExtra("item", mitem);
+				passItemBackIntent.putExtra("action", "s");
 				setResult(RESULT_OK, passItemBackIntent);
 				finish();
 			}
@@ -127,7 +148,11 @@ public class NewItemActivity extends ActionBarActivity
 		deleteBut.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				Intent passItemBackIntent = new Intent(NewItemActivity.this, MainActivity.class);
+				passItemBackIntent.putExtra("item", mitem);
+				passItemBackIntent.putExtra("action", "d");
+				setResult(RESULT_OK, passItemBackIntent);
+				finish();
 			}
 		});
 	}
@@ -160,14 +185,70 @@ public class NewItemActivity extends ActionBarActivity
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
 		// Get the item that was selected. 
-		String loc = parent.getItemAtPosition(position).toString();
-		location = loc;
-		Toast.makeText(NewItemActivity.this, "Picked " + loc, Toast.LENGTH_SHORT).show();
+		location = (Location) parent.getItemAtPosition(position);
+		
+		//Toast.makeText(NewItemActivity.this, "Picked " + location.getName(), Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
-		location = "";
+		location = new Location();
+	}
+	
+	private class LocSpinnerAdpt extends ArrayAdapter<Location>{
+		private Context context;
+		private List<Location> l;
+		public LocSpinnerAdpt(Context context, int resource,
+				List<Location> objects) {
+			super(context, resource, objects);
+			this.context = context;
+			this.l = objects;
+		}
+		
+		public int getCount(){
+			return l.size();
+		}
+		
+		public Location getItem(int position){
+			return l.get(position);
+		}
+		
+		public long getItemId(int position){
+			return position;
+		}
+		
+		/* Set the location names to the spinner */
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent){
+			View view = convertView; // This is the view we are going to change
+			
+			// If the view to be changed is null, it hasn't been rendered yet and it needs to be inflated.
+			if(view == null){
+				LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				view = inflater.inflate(R.layout.location_spinner, null);
+			}
+			
+			TextView spnrTxt = (TextView) view.findViewById(R.id.locSpnr);
+			spnrTxt.setTextColor(Color.BLACK);
+			spnrTxt.setText(l.get(position).getName());
+			return view;
+		}
+		
+		@Override
+		public View getDropDownView(int position, View convertView, ViewGroup parent){
+			View view = convertView; // This is the view we are going to change
+			
+			// If the view to be changed is null, it hasn't been rendered yet and it needs to be inflated.
+			if(view == null){
+				LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				view = inflater.inflate(R.layout.location_spinner_drop ,null);
+			}
+			
+			TextView spnrTxt = (TextView) view.findViewById(R.id.locSpnr);
+			spnrTxt.setTextColor(Color.BLACK);
+			spnrTxt.setText(l.get(position).getName());
+			return view;
+		}
 	}
 	
 }
