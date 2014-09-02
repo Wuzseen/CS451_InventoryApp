@@ -30,3 +30,5 @@ proguard/
 .idea/
 bin/
 gen/
+
+CS451_inventoryapp/test-test/src/com/example/cs451_inventoryapp/test/SQLTest.java
